@@ -6,6 +6,6 @@ import uk.co.dashery.TestMongoConfiguration;
 
 @Configuration
 @Import({TestMongoConfiguration.class})
-public class TestDasheryAutocompleteConfig extends DasheryAutocompleteApplication {
+public class TestAutocompleteConfig extends AutocompleteConfig {
 
 }

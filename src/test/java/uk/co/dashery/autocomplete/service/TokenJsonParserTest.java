@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.co.dashery.autocomplete.TestDasheryAutocompleteConfig;
+import uk.co.dashery.autocomplete.TestAutocompleteConfig;
 import uk.co.dashery.autocomplete.data.Token;
 
 import javax.inject.Inject;
@@ -19,7 +19,7 @@ import static uk.co.dashery.autocomplete.TokenTestUtils.getTestJson;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestDasheryAutocompleteConfig.class)
+@ContextConfiguration(classes = TestAutocompleteConfig.class)
 public class TokenJsonParserTest {
 
     public static final String VALUE = "test value";

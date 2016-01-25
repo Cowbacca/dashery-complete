@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 @Configuration
 @Import({TestMongoConfiguration.class})
 @EnableMBeanExport(defaultDomain = "clothingtest")
-public class TestDasheryClothingQueryApplication extends DasheryClothingQueryApplication {
+public class TestDasheryClothingQueryApplication extends ClothingQueryConfig {
 
     @Bean
     public RestTemplate restTemplate() {
