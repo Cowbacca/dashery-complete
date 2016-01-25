@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Form</h1>
+
+<form action="#" th:action="@{/productFeed}" th:object="${productFeed}" method="post" enctype="multipart/form-data">
+    <p>Using URL? <input type="checkbox" th:field="*{usingUrl}"/></p>
+
+    <p>URL: <input type="text" th:field="*{url}"/></p>
+
+    <p>File: <input type="file" th:field="*{file}"/></p>
+
+    <p>Affiliate Window format? <input type="checkbox" th:field="*{affiliateWindowFormat}"/></p>
+
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>
