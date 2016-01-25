@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.clothing;
+package uk.co.dashery.clothingquery.clothing;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,7 +12,7 @@ import org.jsoup.parser.Parser;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
-import uk.co.dashery.clothingquerry.clothing.tag.Tag;
+import uk.co.dashery.clothingquery.clothing.tag.Tag;
 
 import java.util.*;
 import java.util.stream.Collectors;

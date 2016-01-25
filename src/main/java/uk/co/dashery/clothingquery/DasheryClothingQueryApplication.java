@@ -1,11 +1,11 @@
-package uk.co.dashery.clothingquerry;
+package uk.co.dashery.clothingquery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.client.RestTemplate;
-import uk.co.dashery.clothingquerry.rabbitmq.RabbitMqConfig;
+import uk.co.dashery.clothingquery.rabbitmq.RabbitMqConfig;
 
 @SpringBootApplication
 @Import(RabbitMqConfig.class)

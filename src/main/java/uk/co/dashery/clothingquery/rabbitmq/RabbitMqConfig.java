@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.rabbitmq;
+package uk.co.dashery.clothingquery.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

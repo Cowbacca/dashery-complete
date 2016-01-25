@@ -1,9 +1,9 @@
-package uk.co.dashery.clothingquerry.token;
+package uk.co.dashery.clothingquery.token;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import uk.co.dashery.clothingquerry.clothing.Clothing;
+import uk.co.dashery.clothingquery.clothing.Clothing;
 
 import javax.inject.Inject;
 import java.util.List;

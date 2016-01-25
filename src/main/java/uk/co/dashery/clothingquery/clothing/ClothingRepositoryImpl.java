@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.clothing;
+package uk.co.dashery.clothingquery.clothing;
 
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;

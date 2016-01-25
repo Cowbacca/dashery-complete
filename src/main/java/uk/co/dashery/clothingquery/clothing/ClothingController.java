@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.clothing;
+package uk.co.dashery.clothingquery.clothing;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.web.bind.annotation.CrossOrigin;

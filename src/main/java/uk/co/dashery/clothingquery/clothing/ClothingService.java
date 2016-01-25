@@ -1,7 +1,7 @@
-package uk.co.dashery.clothingquerry.clothing;
+package uk.co.dashery.clothingquery.clothing;
 
 import org.springframework.stereotype.Service;
-import uk.co.dashery.clothingquerry.token.TokenService;
+import uk.co.dashery.clothingquery.token.TokenService;
 
 import javax.inject.Inject;
 import java.util.List;

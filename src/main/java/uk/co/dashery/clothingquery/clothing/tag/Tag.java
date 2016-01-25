@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.clothing.tag;
+package uk.co.dashery.clothingquery.clothing.tag;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

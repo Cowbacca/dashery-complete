@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquerry.clothing;
+package uk.co.dashery.clothingquery.clothing;
 
 import java.util.List;
 

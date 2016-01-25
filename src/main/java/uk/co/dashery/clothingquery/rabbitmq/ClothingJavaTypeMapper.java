@@ -1,10 +1,10 @@
-package uk.co.dashery.clothingquerry.rabbitmq;
+package uk.co.dashery.clothingquery.rabbitmq;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.support.converter.Jackson2JavaTypeMapper;
-import uk.co.dashery.clothingquerry.clothing.Clothing;
+import uk.co.dashery.clothingquery.clothing.Clothing;
 
 import java.util.List;
 
