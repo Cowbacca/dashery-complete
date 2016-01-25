@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta charset="UTF-8"/>
+    <title>Dashery</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css"/>
+    <link rel="stylesheet" href="css/search.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div class="wrap">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand dashery" href="/">Dashery</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            </div>
+        </div>
+    </nav>
+    <div id="search">
+        <div class="container">
+            <div id="search-header" class="row text-center">
+                <h1 class="dashery">Intuitive Clothing Search</h1>
+            </div>
+            <div class="row">
+                <div class="tokenfield col-md-8 col-md-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-input tokenfield-search"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="search()">Go!</button>
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center" id="search-information">
+                <div class="col-md-4">
+                    <h2>Token Based Searching</h2>
+
+                    <p>Simply type what you are looking for and autocomplete will do the rest!</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Immediate Results</h2>
+
+                    <p>All results will match your specific desires, so no need to go trawling through pages of
+                        Google
+                        results.</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>High Quality Clothing</h2>
+
+                    <p>Quality garments from the likes of Drake's, Private White V.C., and Marwood.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="featured">
+        <div class="row text-center strike">
+            <span>FEATURED</span>
+        </div>
+        <div class="row text-center">
+            <a href="http://www.drakes.com/online-shop/scarves/archival-hunter-print-wool-and-silk-scarf-9493">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/drakes.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Drake's</strong></span>
+                    <br/>
+                    <span>£275</span>
+                </div>
+            </a>
+            <a href="http://www.carriercompany.co.uk/shop/35-men-s-irish-wool-jacket">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/carriercompany.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Carrier Company</strong></span>
+                    <br/>
+                    <span>£130</span>
+                </div>
+            </a>
+            <a href="http://www.tusting.co.uk/collections-leather-bags/harrold/harrold-chellington-leather-holdall-in-deep-green">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/tusting.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Tusting</strong></span>
+                    <br/>
+                    <span>£640</span>
+                </div>
+            </a>
+            <a href="http://hiutdenim.co.uk/products/selvedge-denim-hacks-2014">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/hiut.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Hiut</strong></span>
+                    <br/>
+                    <span>£230</span>
+                </div>
+            </a>
+        </div>
+        <div class="row text-center">
+            <a href="http://www.marwoodlondon.co.uk/product/marwood-slub-fleck-applique-navy-white/">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/marwood.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Marwood</strong></span>
+                    <br/>
+                    <span>£130</span>
+                </div>
+            </a>
+            <a href="http://www.privatewhitevc.com/online-shop/mens/coats-jackets/bestsellers/twin-track-olive-beeswax.html">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/privatewhitevc.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Private White V.C.</strong></span>
+                    <br/>
+                    <span>£595</span>
+                </div>
+            </a>
+            <a href="http://www.pantherella.com/cotton-lisle-duke-diamond-stitch-argyle.html">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/pantherella.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Pantherella</strong></span>
+                    <br/>
+                    <span>£14.50</span>
+                </div>
+            </a>
+            <a href="http://www.quiggleys.co.uk/collections/knitwear/products/trapper">
+                <div class="col-md-3 col-result">
+                    <img src="img/featured/quiggleys.jpg" class="img-responsive img-result" alt=""/>
+                    <span><strong>Quiggleys</strong></span>
+                    <br/>
+                    <span>£155</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container text-center">
+            <a href="https://dasherydev.wordpress.com/">dashery dev blog</a>
+        </div>
+        <div class="container text-center">
+            © Dashery
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    prefetchURL = /*[[${@environment.getProperty('dashery.autocomplete.prefetch.url')}]]*/;
+
+</script>
+<script type="text/javascript" src='bower_components/jquery/dist/jquery.min.js'></script>
+<script type="text/javascript" src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript"
+        src='bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js'></script>
+<script type="text/javascript" src='bower_components/typeahead.js/dist/typeahead.bundle.min.js'></script>
+<script type="text/javascript" src='bower_components/handlebars/handlebars.min.js'></script>
+<script type="text/javascript" src='js/search.js'></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      profile: staging
+      uri: http://dashery-config-server.herokuapp.com
+      username: user
+      password: test
