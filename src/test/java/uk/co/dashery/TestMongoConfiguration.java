@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquery;
+package uk.co.dashery;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.Mongo;
