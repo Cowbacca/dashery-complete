@@ -18,6 +18,11 @@ public class ResultsController {
     @Inject
     private FrontEndClothingConverter frontEndClothingConverter;
 
+    @RequestMapping("/")
+    String home() {
+        return "index";
+    }
+
     @RequestMapping("/results")
     String results(@RequestParam(defaultValue = "") String search, Model model) {
         List<Clothing> clothing = clothingController.clothing(search);
