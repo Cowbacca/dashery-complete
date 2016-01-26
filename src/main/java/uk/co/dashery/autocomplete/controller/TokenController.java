@@ -1,6 +1,7 @@
 package uk.co.dashery.autocomplete.controller;
 
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import uk.co.dashery.autocomplete.data.Token;
 import uk.co.dashery.autocomplete.repository.TokenRepository;
@@ -32,6 +33,7 @@ public class TokenController {
         tokenService.createFromJson(json);
     }
 
+    @Async
     @EventListener
     public void handleClothingAdded(ClothingAddedEvent clothingAddedEvent) {
         List<Clothing> clothingList = clothingAddedEvent.getClothingList();
