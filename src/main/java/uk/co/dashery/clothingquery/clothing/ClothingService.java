@@ -1,7 +1,8 @@
 package uk.co.dashery.clothingquery.clothing;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import uk.co.dashery.clothingquery.token.TokenService;
+import uk.co.dashery.clothingquery.ClothingAddedEvent;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -13,7 +14,7 @@ public class ClothingService {
     @Inject
     private ClothingRepository clothingRepository;
     @Inject
-    private TokenService tokenService;
+    private ApplicationEventPublisher applicationEventPublisher;
 
     public List<Clothing> search(String search) {
         String[] tags = search.split(SEPARATOR);
@@ -24,6 +25,6 @@ public class ClothingService {
 
     public void create(List<Clothing> clothing) {
         clothingRepository.save(clothing);
-        tokenService.createFromClothing(clothing);
+        applicationEventPublisher.publishEvent(new ClothingAddedEvent(clothing));
     }
 }

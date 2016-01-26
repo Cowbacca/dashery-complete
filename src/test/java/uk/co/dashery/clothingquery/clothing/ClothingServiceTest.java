@@ -5,7 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import uk.co.dashery.clothingquery.token.TokenService;
+import org.springframework.context.ApplicationEventPublisher;
+import uk.co.dashery.clothingquery.ClothingAddedEvent;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ClothingServiceTest {
     @Mock
     private ClothingRepository mockClothingRepository;
     @Mock
-    private TokenService tokenService;
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Before
     public void setUp() throws Exception {
@@ -50,7 +51,7 @@ public class ClothingServiceTest {
         clothingService.create(clothing);
 
         verify(mockClothingRepository).save(clothing);
-        verify(tokenService).createFromClothing(clothing);
+        verify(applicationEventPublisher).publishEvent(new ClothingAddedEvent(clothing));
 
     }
 

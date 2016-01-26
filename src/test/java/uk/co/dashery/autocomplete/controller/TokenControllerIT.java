@@ -1,19 +1,26 @@
 package uk.co.dashery.autocomplete.controller;
 
+import com.google.common.collect.Lists;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.co.dashery.autocomplete.TestAutocompleteConfig;
 import uk.co.dashery.autocomplete.data.Token;
 import uk.co.dashery.autocomplete.repository.TokenRepository;
+import uk.co.dashery.clothingquery.ClothingAddedEvent;
+import uk.co.dashery.clothingquery.clothing.Clothing;
+import uk.co.dashery.clothingquery.clothing.tag.Tag;
 
 import javax.inject.Inject;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,6 +36,8 @@ public class TokenControllerIT {
 
     @Inject
     private TokenRepository tokenRepository;
+    @Inject
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Inject
     private MongoTemplate mongoTemplate;
@@ -78,5 +87,20 @@ public class TokenControllerIT {
 
     private String getRandomString(int i) {
         return Long.toHexString(Double.doubleToLongBits(Math.random()));
+    }
+
+    @Test
+    public void testCreatesNewTokensOnClothingAddedEvent() {
+        applicationEventPublisher.publishEvent(getClothingAddedEvent("Test", "Another"));
+
+        List<Token> expectedTokens = Lists.newArrayList(new Token("Test"), new Token("Another"));
+        assertThat(tokenRepository.findAll(), is(expectedTokens));
+    }
+
+    private ClothingAddedEvent getClothingAddedEvent(String... tags) {
+        Clothing clothing = new Clothing();
+        Set<Tag> tagObjects = Arrays.stream(tags).map(tag -> new Tag(tag, 0)).collect(Collectors.toSet());
+        clothing.setTags(tagObjects);
+        return new ClothingAddedEvent(Lists.newArrayList(clothing));
     }
 }
