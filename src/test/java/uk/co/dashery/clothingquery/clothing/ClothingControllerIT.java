@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.co.dashery.clothingquery.DasheryClothingQueryIntegrationTest;
+import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -22,6 +24,10 @@ import static uk.co.dashery.clothingquery.ClothingTestUtils.generateClothing;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DasheryClothingQueryIntegrationTest
 public class ClothingControllerIT {
+
+    public static final String TAG = "some";
+    @Inject
+    private ProductToClothingConverter productToClothingConverter;
 
     @Inject
     private MongoTemplate mongoTemplate;
@@ -61,40 +67,46 @@ public class ClothingControllerIT {
 
     @Test
     public void testUpdatesClothingRatherThanDuplicates() throws IOException {
-        Clothing clothing = givenAClothing();
-        clothing.setPrice(1);
+        Product product = withAProduct();
+        product.setDescription(TAG);
+        product.setPrice(1);
+        clothingController.handleProductsCreated(getProductsCreatedEvent(product));
 
-        clothingController.processNewClothing(Lists.newArrayList(clothing));
+        MatcherAssert.assertThat(firstClothingWithTag(TAG).getPrice(), CoreMatchers.is(1));
 
-        MatcherAssert.assertThat(firstClothingWithTagNamedSome().getPrice(), CoreMatchers.is(1));
+        product.setPrice(2);
 
-        clothing.setPrice(2);
+        clothingController.handleProductsCreated(getProductsCreatedEvent(product));
 
-        clothingController.processNewClothing(Lists.newArrayList(clothing));
+        MatcherAssert.assertThat(firstClothingWithTag(TAG).getPrice(), CoreMatchers.is(2));
+    }
 
-        MatcherAssert.assertThat(firstClothingWithTagNamedSome().getPrice(), CoreMatchers.is(2));
+    private Product withAProduct() {
+        Product product = new Product();
+        product.setId("someid");
+        return product;
+    }
+
+    private ProductsCreatedEvent getProductsCreatedEvent(Product product) {
+        return new ProductsCreatedEvent(Lists.newArrayList(product));
     }
 
     @Test
     public void testFindsClothingWithSearchTermInName() {
-        Clothing clothing = new Clothing("someid");
-        clothing.setName("Grey Wool Trousers");
-        List<Clothing> expectedClothing = Lists.newArrayList(clothing);
+        Product product = withAProduct();
+        product.setName("Grey Wool Trousers");
 
-        clothingController.processNewClothing(expectedClothing);
+        clothingController.handleProductsCreated(getProductsCreatedEvent(product));
 
-        assertThat(clothingController.clothing("grey"), is(expectedClothing));
+        assertThat(clothingController.clothing("grey"), is(getClothing(product)));
 
     }
 
-    private Clothing givenAClothing() {
-        Clothing product = new Clothing();
-        product.setId("id");
-        product.setSearchableText("Some");
-        return product;
+    private List<Clothing> getClothing(Product product) {
+        return productToClothingConverter.convert(Lists.newArrayList(product));
     }
 
-    private Clothing firstClothingWithTagNamedSome() {
-        return clothingController.clothing("some").get(0);
+    private Clothing firstClothingWithTag(String tag) {
+        return clothingController.clothing(tag).get(0);
     }
 }

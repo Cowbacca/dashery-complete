@@ -5,8 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
+import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -19,11 +21,14 @@ import static uk.co.dashery.clothingquery.ClothingTestUtils.createClothing;
 public class ClothingControllerTest {
 
     public static final String SEARCH_STRING = "test:test";
-    @InjectMocks
-    private ClothingController clothingController;
 
     @Mock
     private ClothingService mockClothingService;
+    @Spy
+    private ProductToClothingConverter productToClothingConverter = new ProductToClothingConverter();
+
+    @InjectMocks
+    private ClothingController clothingController;
 
     @Before
     public void setUp() throws Exception {
@@ -40,9 +45,16 @@ public class ClothingControllerTest {
 
     @Test
     public void testProcessesNewClothing() {
-        ArrayList<Clothing> newClothing = Lists.newArrayList(new Clothing("id123"));
-        clothingController.processNewClothing(newClothing);
+        List<Clothing> newClothing = Lists.newArrayList(new Clothing("id123"));
+
+        clothingController.handleProductsCreated(getProductsCreatedEvent("id123"));
 
         verify(mockClothingService).create(newClothing);
+    }
+
+    private ProductsCreatedEvent getProductsCreatedEvent(String id) {
+        Product product = new Product();
+        product.setId(id);
+        return new ProductsCreatedEvent(Lists.newArrayList(product));
     }
 }
