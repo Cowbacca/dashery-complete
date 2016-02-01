@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Document
 public class Clothing {
 
-    public static final CharMatcher PUNCTUATION_MATCHER = CharMatcher.anyOf(",. \n\t\\\"'][#*:()-");
+    public static final CharMatcher PUNCTUATION_MATCHER = CharMatcher.anyOf(",. \n\t\\\"'][#*:()-`’");
     public static final int NAME_SCORE_MULTIPLIER = 10;
     public static final int SEARCHABLE_TEXT_SCORE_MULTIPLIER = 1;
 
