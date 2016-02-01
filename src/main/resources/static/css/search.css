@@ -11,20 +11,25 @@ body {
     font-size: 500%;
 }
 
+.vertical-centre {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 h1 {
-    font-size:72px;
+    font-size:36px;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
 }
 
 #search {
-    padding-top: 10em;
-    padding-bottom: 15em;
     margin-bottom: 1em;
     color: white;
-    background: url(../img/IMG_1267.JPG) #2D2F3C;
-}
-
-#search-header {
-    margin-bottom: 1em;
+    background: url(../img/cardigan_background.jpg) #2D2F3C no-repeat;
+    background-size: cover;
+    height: 60vh;
 }
 
 #search-information {
