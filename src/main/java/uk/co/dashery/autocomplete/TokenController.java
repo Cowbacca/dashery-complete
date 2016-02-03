@@ -25,7 +25,7 @@ public class TokenController {
         return tokenService.findAll();
     }
 
-    @RequestMapping(value = "/tokens/{beginning}", method = RequestMethod.GET)
+    @RequestMapping(value = "/tokens/start-with/{beginning}", method = RequestMethod.GET)
     public Set<Token> getTokensBeginningWith(@PathVariable String beginning) {
         return tokenRepository.findByValueStartsWith(beginning);
     }
