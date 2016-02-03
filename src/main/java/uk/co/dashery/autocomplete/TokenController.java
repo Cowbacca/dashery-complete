@@ -1,11 +1,8 @@
-package uk.co.dashery.autocomplete.controller;
+package uk.co.dashery.autocomplete;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
-import uk.co.dashery.autocomplete.data.Token;
-import uk.co.dashery.autocomplete.repository.TokenRepository;
-import uk.co.dashery.autocomplete.service.TokenService;
 import uk.co.dashery.clothingquery.ClothingAddedEvent;
 import uk.co.dashery.clothingquery.clothing.Clothing;
 
@@ -26,6 +23,11 @@ public class TokenController {
     @RequestMapping(value = "/tokens/autocomplete", method = RequestMethod.GET)
     public List<Token> tokens() {
         return tokenService.findAll();
+    }
+
+    @RequestMapping(value = "/tokens/{beginning}", method = RequestMethod.GET)
+    public Set<Token> getTokensBeginningWith(@PathVariable String beginning) {
+        return tokenRepository.findByValueStartsWith(beginning);
     }
 
     @RequestMapping(value = "/tokens/json", method = RequestMethod.POST)

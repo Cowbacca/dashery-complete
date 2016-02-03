@@ -1,10 +1,8 @@
-package uk.co.dashery.autocomplete.service;
+package uk.co.dashery.autocomplete;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import uk.co.dashery.autocomplete.data.Token;
-import uk.co.dashery.autocomplete.repository.TokenRepository;
 
 import javax.inject.Inject;
 import java.util.List;

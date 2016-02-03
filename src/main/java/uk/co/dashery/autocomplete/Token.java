@@ -1,4 +1,4 @@
-package uk.co.dashery.autocomplete.data;
+package uk.co.dashery.autocomplete;
 
 import org.springframework.data.annotation.Id;
 
