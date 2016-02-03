@@ -2,7 +2,6 @@ package uk.co.dashery.autocomplete;
 
 
 import com.google.common.collect.Lists;
-import uk.co.dashery.autocomplete.data.Token;
 
 import java.util.List;
 

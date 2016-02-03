@@ -1,4 +1,4 @@
-package uk.co.dashery.autocomplete.controller;
+package uk.co.dashery.autocomplete;
 
 import com.google.common.collect.Lists;
 import org.junit.After;
@@ -8,9 +8,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.co.dashery.autocomplete.TestAutocompleteConfig;
-import uk.co.dashery.autocomplete.data.Token;
-import uk.co.dashery.autocomplete.repository.TokenRepository;
 import uk.co.dashery.clothingquery.ClothingAddedEvent;
 import uk.co.dashery.clothingquery.clothing.Clothing;
 import uk.co.dashery.clothingquery.clothing.tag.Tag;
@@ -102,5 +99,16 @@ public class TokenControllerIT {
         Set<Tag> tagObjects = Arrays.stream(tags).map(tag -> new Tag(tag, 0)).collect(Collectors.toSet());
         clothing.setTags(tagObjects);
         return new ClothingAddedEvent(Lists.newArrayList(clothing));
+    }
+
+    @Test
+    public void testGetsTokensThatStartWithGivenValue() throws InterruptedException {
+        tokenController.createTokensFromJson(getTestJson("Kylo", "Ren"));
+        Thread.sleep(1000);
+        tokenController.initAllTokens();
+
+        List<Token> tokensBeginningWithKy = tokenController.getTokensBeginningWith("Ky");
+
+        assertThat(tokensBeginningWithKy, is(Lists.newArrayList(new Token("Kylo"))));
     }
 }

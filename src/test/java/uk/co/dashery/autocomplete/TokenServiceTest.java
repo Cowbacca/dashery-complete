@@ -1,11 +1,9 @@
-package uk.co.dashery.autocomplete.service;
+package uk.co.dashery.autocomplete;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import uk.co.dashery.autocomplete.data.Token;
-import uk.co.dashery.autocomplete.repository.TokenRepository;
 
 import java.util.List;
 

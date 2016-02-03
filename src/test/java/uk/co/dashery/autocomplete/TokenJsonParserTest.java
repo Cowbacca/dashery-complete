@@ -1,12 +1,10 @@
-package uk.co.dashery.autocomplete.service;
+package uk.co.dashery.autocomplete;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.co.dashery.autocomplete.TestAutocompleteConfig;
-import uk.co.dashery.autocomplete.data.Token;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

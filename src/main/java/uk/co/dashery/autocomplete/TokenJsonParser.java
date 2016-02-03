@@ -1,8 +1,7 @@
-package uk.co.dashery.autocomplete.service;
+package uk.co.dashery.autocomplete;
 
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
-import uk.co.dashery.autocomplete.data.Token;
 
 import javax.inject.Inject;
 import java.util.Arrays;
