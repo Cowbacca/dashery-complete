@@ -1,7 +1,6 @@
 package uk.co.dashery.autocomplete;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -103,11 +102,13 @@ public class TokenControllerIT {
     }
 
     @Test
-    public void testGetsTokensThatStartWithGivenValue() {
+    public void testGetsTokensThatStartWithGivenValue() throws InterruptedException {
         tokenController.createTokensFromJson(getTestJson("Kylo", "Ren"));
+        Thread.sleep(1000);
+        tokenController.initAllTokens();
 
-        Set<Token> tokensBeginningWithKy = tokenController.getTokensBeginningWith("Ky");
+        List<Token> tokensBeginningWithKy = tokenController.getTokensBeginningWith("Ky");
 
-        assertThat(tokensBeginningWithKy, is(Sets.newHashSet(new Token("Kylo"))));
+        assertThat(tokensBeginningWithKy, is(Lists.newArrayList(new Token("Kylo"))));
     }
 }

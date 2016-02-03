@@ -1,14 +1,14 @@
 package uk.co.dashery.autocomplete;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +20,7 @@ import static uk.co.dashery.autocomplete.TokenTestUtils.generateTokens;
 public class TokenControllerTest {
 
     public static final String JSON = "test";
-    public static final String BEGINNING_OF_TAG = "some";
+
     @InjectMocks
     private TokenController tokenController;
 
@@ -52,11 +52,39 @@ public class TokenControllerTest {
 
     @Test
     public void testGetsTokensThatStartWithGivenValue() {
-        HashSet<Token> tokens = Sets.newHashSet(new Token("sometoken"), new Token("someother"));
-        when(tokenRepository.findByValueStartsWith(BEGINNING_OF_TAG)).thenReturn(tokens);
+        withSomeTokensInTheRepository("sometoken", "othertoken");
 
-        Set<Token> tokensFromController = tokenController.getTokensBeginningWith(BEGINNING_OF_TAG);
+        List<Token> tokensFromController = tokenController.getTokensBeginningWith("some");
 
-        assertThat(tokensFromController, is(tokens));
+        assertThat(tokensFromController, is(Lists.newArrayList(new Token("sometoken"))));
+    }
+
+    private void withSomeTokensInTheRepository(String... tokenStrings) {
+        List<Token> tokens = getTokens(tokenStrings);
+        when(tokenRepository.findAll()).thenReturn(tokens);
+        tokenController.initAllTokens();
+    }
+
+    private List<Token> getTokens(String... tokenStrings) {
+        return Arrays.stream(tokenStrings).map(Token::new).collect(Collectors.toList());
+    }
+
+    @Test
+    public void testGetsOnlyTheFirstFiveTokensThatStartWithGivenValue() {
+        withSomeTokensInTheRepository("sometoken1", "sometoken2", "sometoken3", "sometoken4", "sometoken5", "sometoken6");
+
+        List<Token> tokensFromController = tokenController.getTokensBeginningWith("some");
+
+        assertThat(tokensFromController.size(), is(5));
+    }
+
+    @Test
+    public void testGetsTokensThatStartWithAGivenValueInOrderOfSizeThenAlphabetically() {
+        withSomeTokensInTheRepository("aa", "ab", "aac", "a");
+
+        List<Token> tokensFromController = tokenController.getTokensBeginningWith("a");
+
+        assertThat(tokensFromController, is(getTokens("a", "aa", "ab", "aac")));
+
     }
 }

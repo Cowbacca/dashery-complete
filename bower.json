@@ -9,10 +9,10 @@
   "dependencies": {
     "bootstrap": "~3.3.5",
     "bootstrap-tokenfield": "~0.12.1",
+    "corejs-typeahead": "master",
     "handlebars": "~4.0.2",
     "jquery": "~2.1.4",
-    "jquery-ui": "~1.11.4",
-    "typeahead.js": "~0.11.1"
+    "jquery-ui": "~1.11.4"
   },
   "resolutions": {
     "bootstrap": "~3.3.5"

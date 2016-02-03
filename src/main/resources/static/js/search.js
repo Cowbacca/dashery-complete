@@ -1,15 +1,16 @@
 function initSearchTokenfield() {
-    var engine = new Bloodhound({
-        prefetch: prefetchURL,
+  var engine = new Bloodhound({
+        remote: {url: '/tokens/start-with/%QUERY', wildcard: '%QUERY'},
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
     });
 
-    engine.initialize();
-
     $('.tokenfield-search')
     .tokenfield({
-        typeahead: [null,
+        typeahead: [{
+                      hint: true,
+                      highlight: true,
+                    },
             {
                 source: engine.ttAdapter(),
                 name: 'clothes',

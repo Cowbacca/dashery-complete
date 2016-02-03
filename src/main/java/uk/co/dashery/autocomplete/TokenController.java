@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import uk.co.dashery.clothingquery.ClothingAddedEvent;
 import uk.co.dashery.clothingquery.clothing.Clothing;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,16 +20,26 @@ public class TokenController {
     private TokenService tokenService;
     @Inject
     private TokenRepository tokenRepository;
+    private List<Token> allTokens;
+
+    @PostConstruct
+    public void initAllTokens() {
+        allTokens = tokenRepository.findAll();
+        Collections.sort(allTokens);
+    }
 
     @CrossOrigin
-    @RequestMapping(value = "/tokens/autocomplete", method = RequestMethod.GET)
+    @RequestMapping(value = "/tokens", method = RequestMethod.GET)
     public List<Token> tokens() {
         return tokenService.findAll();
     }
 
     @RequestMapping(value = "/tokens/start-with/{beginning}", method = RequestMethod.GET)
-    public Set<Token> getTokensBeginningWith(@PathVariable String beginning) {
-        return tokenRepository.findByValueStartsWith(beginning);
+    public List<Token> getTokensBeginningWith(@PathVariable String beginning) {
+        return allTokens.stream()
+                .filter(token -> token.getValue().startsWith(beginning))
+                .limit(5)
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/tokens/json", method = RequestMethod.POST)
