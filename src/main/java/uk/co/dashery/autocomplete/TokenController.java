@@ -34,7 +34,7 @@ public class TokenController {
         return tokenService.findAll();
     }
 
-    @RequestMapping(value = "/tokens/start-with/{beginning}", method = RequestMethod.GET)
+    @RequestMapping(value = "/tokens/{beginning}", method = RequestMethod.GET)
     public List<Token> getTokensBeginningWith(@PathVariable String beginning) {
         return allTokens.stream()
                 .filter(token -> token.getValue().startsWith(beginning))
