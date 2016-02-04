@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.context.ApplicationEventPublisher;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class TokenServiceTest {
     private TokenRepository tokenRepository;
     @Mock
     private TokenJsonParser tokenJsonParser;
+    @Mock
+    private ApplicationEventPublisher applicationEventPublisher;
 
 
     @Before
@@ -40,6 +43,8 @@ public class TokenServiceTest {
         tokenService.createFromJson("test");
 
         verify(tokenRepository).save(parsedTokens);
+        verify(applicationEventPublisher).publishEvent(new TokensCreatedEvent(parsedTokens,
+                tokenService));
 
     }
 

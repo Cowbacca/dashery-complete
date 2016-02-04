@@ -66,7 +66,7 @@ public class ClothingControllerIT {
     }
 
     @Test
-    public void testUpdatesClothingRatherThanDuplicates() throws IOException {
+    public void testUpdatesClothingRatherThanDuplicates() throws IOException, InterruptedException {
         Product product = withAProduct();
         product.setDescription(TAG);
         product.setPrice(1);
@@ -78,7 +78,13 @@ public class ClothingControllerIT {
 
         clothingController.handleProductsCreated(getProductsCreatedEvent(product));
 
+        waitForAsyncTasksToFinish();
+
         MatcherAssert.assertThat(firstClothingWithTag(TAG).getPrice(), CoreMatchers.is(2));
+    }
+
+    private void waitForAsyncTasksToFinish() throws InterruptedException {
+        Thread.sleep(500);
     }
 
     private Product withAProduct() {
@@ -92,11 +98,13 @@ public class ClothingControllerIT {
     }
 
     @Test
-    public void testFindsClothingWithSearchTermInName() {
+    public void testFindsClothingWithSearchTermInName() throws InterruptedException {
         Product product = withAProduct();
         product.setName("Grey Wool Trousers");
 
         clothingController.handleProductsCreated(getProductsCreatedEvent(product));
+
+        waitForAsyncTasksToFinish();
 
         assertThat(clothingController.clothing("grey"), is(getClothing(product)));
 

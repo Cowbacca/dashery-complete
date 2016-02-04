@@ -87,10 +87,12 @@ public class TokenControllerIT {
     }
 
     @Test
-    public void testCreatesNewTokensOnClothingAddedEvent() {
+    public void testCreatesNewTokensOnClothingAddedEvent() throws InterruptedException {
         applicationEventPublisher.publishEvent(getClothingAddedEvent("Test", "Another"));
 
-        List<Token> expectedTokens = Lists.newArrayList(new Token("Test"), new Token("Another"));
+        waitForAsyncTasksToFinish();
+
+        List<Token> expectedTokens = Lists.newArrayList(new Token("Another"), new Token("Test"));
         assertThat(tokenRepository.findAll(), is(expectedTokens));
     }
 
@@ -104,11 +106,25 @@ public class TokenControllerIT {
     @Test
     public void testGetsTokensThatStartWithGivenValue() throws InterruptedException {
         tokenController.createTokensFromJson(getTestJson("Kylo", "Ren"));
-        Thread.sleep(1000);
+        waitForAsyncTasksToFinish();
         tokenController.initAllTokens();
 
         List<Token> tokensBeginningWithKy = tokenController.getTokensBeginningWith("Ky");
 
         assertThat(tokensBeginningWithKy, is(Lists.newArrayList(new Token("Kylo"))));
+    }
+
+    @Test
+    public void testUpdatesTokenCacheWhenNewTokensAreAdded() throws InterruptedException {
+        tokenController.createTokensFromJson(getTestJson("Test", "Another"));
+
+        tokenController.createTokensFromJson(getTestJson("Tester", "An"));
+
+        waitForAsyncTasksToFinish();
+
+        List<Token> tokensBeginningWithTest = tokenController.getTokensBeginningWith("Test");
+
+        assertThat(tokensBeginningWithTest, is(Lists.newArrayList(new Token("Test"), new Token
+                ("Tester"))));
     }
 }

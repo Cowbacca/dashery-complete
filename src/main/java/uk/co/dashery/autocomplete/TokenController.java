@@ -1,5 +1,6 @@
 package uk.co.dashery.autocomplete;
 
+import com.google.common.collect.Sets;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,6 @@ import uk.co.dashery.clothingquery.clothing.Clothing;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,12 +20,11 @@ public class TokenController {
     private TokenService tokenService;
     @Inject
     private TokenRepository tokenRepository;
-    private List<Token> allTokens;
+    private Set<Token> allTokens;
 
     @PostConstruct
     public void initAllTokens() {
-        allTokens = tokenRepository.findAll();
-        Collections.sort(allTokens);
+        allTokens = Sets.newTreeSet(tokenRepository.findAll());
     }
 
     @CrossOrigin
@@ -61,5 +60,10 @@ public class TokenController {
                 .flatMap(clothing -> clothing.getTags().stream())
                 .map(tag -> new Token(tag.getValue()))
                 .collect(Collectors.toSet());
+    }
+
+    @EventListener
+    public void handleTokensCreated(TokensCreatedEvent tokensCreatedEvent) {
+        allTokens.addAll(tokensCreatedEvent.getParsedTokens());
     }
 }

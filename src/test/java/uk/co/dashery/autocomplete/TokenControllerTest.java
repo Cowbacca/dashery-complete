@@ -87,4 +87,15 @@ public class TokenControllerTest {
         assertThat(tokensFromController, is(getTokens("a", "aa", "ab", "aac")));
 
     }
+
+    @Test
+    public void testUpdatesTokenCacheWhenNewTokensAreAdded() {
+        withSomeTokensInTheRepository("aa", "ac", "ae");
+
+        tokenController.handleTokensCreated(new TokensCreatedEvent(getTokens("ab", "ad"), this));
+
+        List<Token> tokensFromController = tokenController.getTokensBeginningWith("a");
+
+        assertThat(tokensFromController, is(getTokens("aa", "ab", "ac", "ad", "ae")));
+    }
 }
