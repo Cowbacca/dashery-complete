@@ -1,6 +1,6 @@
 function initSearchTokenfield() {
   var engine = new Bloodhound({
-        remote: {url: '/tokens/%QUERY', wildcard: '%QUERY'},
+        remote: {url: location.protocol + '//' + location.host + '/tokens/%QUERY', wildcard: '%QUERY'},
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
     });
