@@ -72,6 +72,8 @@ public class ClothingControllerIT {
         product.setPrice(1);
         clothingController.handleProductsCreated(getProductsCreatedEvent(product));
 
+        waitForAsyncTasksToFinish();
+
         MatcherAssert.assertThat(firstClothingWithTag(TAG).getPrice(), CoreMatchers.is(1));
 
         product.setPrice(2);
@@ -88,13 +90,11 @@ public class ClothingControllerIT {
     }
 
     private Product withAProduct() {
-        Product product = new Product();
-        product.setId("someid");
-        return product;
+        return withAProduct("someid");
     }
 
-    private ProductsCreatedEvent getProductsCreatedEvent(Product product) {
-        return new ProductsCreatedEvent(Lists.newArrayList(product));
+    private ProductsCreatedEvent getProductsCreatedEvent(Product... products) {
+        return new ProductsCreatedEvent(Lists.newArrayList(products));
     }
 
     @Test
@@ -110,11 +110,35 @@ public class ClothingControllerIT {
 
     }
 
-    private List<Clothing> getClothing(Product product) {
-        return productToClothingConverter.convert(Lists.newArrayList(product));
+    private List<Clothing> getClothing(Product... products) {
+        return productToClothingConverter.convert(Lists.newArrayList(products));
     }
 
     private Clothing firstClothingWithTag(String tag) {
         return clothingController.clothing(tag).get(0);
+    }
+
+    @Test
+    public void testRemovesOldClothingForSameMerchant() throws InterruptedException {
+        String tag = "something";
+        Product productA = withAProduct("a");
+        productA.setDescription(tag);
+        Product productB = withAProduct("b");
+        productB.setDescription(tag);
+
+        clothingController.handleProductsCreated(getProductsCreatedEvent(productA, productB));
+        waitForAsyncTasksToFinish();
+        assertThat(clothingController.clothing(tag), is(getClothing(productA, productB)));
+
+        clothingController.handleProductsCreated(getProductsCreatedEvent(productA));
+        waitForAsyncTasksToFinish();
+        assertThat(clothingController.clothing(tag), is(getClothing(productA)));
+    }
+
+    private Product withAProduct(String id) {
+        Product product = new Product();
+        product.setId(id);
+        product.setMerchant("some merchant");
+        return product;
     }
 }
