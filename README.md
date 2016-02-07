@@ -1,10 +1,24 @@
 # dashery-complete [![Build Status](https://travis-ci.org/Cowbacca/dashery-complete.svg?branch=master)](https://travis-ci.org/Cowbacca/dashery-complete) [![codecov.io](https://codecov.io/github/Cowbacca/dashery-complete/coverage.svg?branch=master)](https://codecov.io/github/Cowbacca/dashery-complete?branch=master)
 Monolithic version of Dashery.  For cheaper deployment to Heroku until microservices are actually needed.
 
-CURRENTLY UNDER CONSTRUCTION!
+Staging site: https://dashery-complete-staging.herokuapp.com/
 
-## Developer Setup
+Live site: http://www.dashery.co.uk/
+
+## Local Setup
+
+Run `npm install`.  This will install bower, and run bower install as a postinstall script.  Then run the spring boot app either from the IDE or via `mvn spring-boot:run`.
+
 This project uses Lombok.  To add support for your IDE of choice, see this link: https://projectlombok.org/download.html
+
+## Heroku Setup
+
+Heroku needs to be set up to run npm install first.
+
+```bash
+heroku buildpacks:add --index 1 heroku/nodejs
+heroku buildpacks:add --index 2 heroku/java
+```
 
 ## Deployment
 
