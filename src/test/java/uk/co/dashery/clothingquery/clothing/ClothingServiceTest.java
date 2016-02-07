@@ -5,14 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.context.ApplicationEventPublisher;
-import uk.co.dashery.clothingquery.ClothingAddedEvent;
 
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static uk.co.dashery.clothingquery.ClothingTestUtils.createClothing;
@@ -26,8 +23,6 @@ public class ClothingServiceTest {
 
     @Mock
     private ClothingRepository mockClothingRepository;
-    @Mock
-    private ApplicationEventPublisher applicationEventPublisher;
 
     @Before
     public void setUp() throws Exception {
@@ -42,17 +37,6 @@ public class ClothingServiceTest {
 
         String searchString = String.join(ClothingService.SEPARATOR, A_TAG, ANOTHER_TAG);
         assertThat(clothingService.search(searchString), is(clothing));
-    }
-
-    @Test
-    public void testCreate() {
-        List<Clothing> clothing = createClothing();
-
-        clothingService.create(clothing);
-
-        verify(mockClothingRepository).save(clothing);
-        verify(applicationEventPublisher).publishEvent(new ClothingAddedEvent(clothing));
-
     }
 
     @Test

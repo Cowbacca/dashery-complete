@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import org.springframework.context.ApplicationEventPublisher;
+import uk.co.dashery.clothingquery.ClothingAddedEvent;
 import uk.co.dashery.ingestor.productfeed.Product;
 import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
 
@@ -23,10 +25,14 @@ public class ClothingControllerTest {
     public static final String SEARCH_STRING = "test:test";
 
     @Mock
+    private ClothingRepository mockClothingRepository;
+    @Mock
+    private ApplicationEventPublisher mockApplicationEventPublisher;
+    @Mock
     private ClothingService mockClothingService;
+
     @Spy
     private ProductToClothingConverter productToClothingConverter = new ProductToClothingConverter();
-
     @InjectMocks
     private ClothingController clothingController;
 
@@ -49,7 +55,8 @@ public class ClothingControllerTest {
 
         clothingController.handleProductsCreated(getProductsCreatedEvent("id123"));
 
-        verify(mockClothingService).create(newClothing);
+        verify(mockClothingRepository).save(newClothing);
+        verify(mockApplicationEventPublisher).publishEvent(new ClothingAddedEvent(newClothing));
     }
 
     private ProductsCreatedEvent getProductsCreatedEvent(String id) {
