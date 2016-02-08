@@ -5,8 +5,7 @@ function initSearchTokenfield() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
     });
 
-    var newLength;
-    var oldLength;
+    var blocked;
 
     $('.tokenfield-search')
     .tokenfield({
@@ -14,27 +13,24 @@ function initSearchTokenfield() {
                       hint: true,
                       highlight: true,
                     },
-            {
-                source: engine.ttAdapter(),
-                name: 'clothes',
-                display: 'value',
-            }
-        ]
+                    {
+                        source: engine.ttAdapter(),
+                        name: 'clothes',
+                        display: 'value',
+                    }
+        ],
+        delimiter: ' '
     })
 
-    .on('tokenfield:createdtoken tokenfield:removedtoken', function (e) {
-        newLength = $('.tokenfield-search').tokenfield('getTokens').length;
-    })
+    .on('tokenfield:createdtoken', function (e) {
+            blocked=true;
+        })
 
-    .parent().on('keydown keypress', this, function (event) {
-        if(event.keyCode === 13) {
-            event.preventDefault();
-
-            if(oldLength === newLength) {
-                search();
-            }
+    .parent().on('keydown keypress click', this, function (event) {
+        if(event.keyCode === 13 && $('.tt-input').val().length ===0 && !blocked) {
+            search();
         }
-        oldLength = $('.tokenfield-search').tokenfield('getTokens').length;
+        blocked = false;
     });
 }
 
