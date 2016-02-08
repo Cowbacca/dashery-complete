@@ -5,6 +5,9 @@ function initSearchTokenfield() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
     });
 
+    var newLength;
+    var oldLength;
+
     $('.tokenfield-search')
     .tokenfield({
         typeahead: [{
@@ -19,10 +22,19 @@ function initSearchTokenfield() {
         ]
     })
 
-    .parent().on('keydown', this, function (event) {
-        if (event.ctrlKey && event.keyCode == 13) {
-            search();
+    .on('tokenfield:createdtoken tokenfield:removedtoken', function (e) {
+        newLength = $('.tokenfield-search').tokenfield('getTokens').length;
+    })
+
+    .parent().on('keydown keypress', this, function (event) {
+        if(event.keyCode === 13) {
+            event.preventDefault();
+
+            if(oldLength === newLength) {
+                search();
+            }
         }
+        oldLength = $('.tokenfield-search').tokenfield('getTokens').length;
     });
 }
 
