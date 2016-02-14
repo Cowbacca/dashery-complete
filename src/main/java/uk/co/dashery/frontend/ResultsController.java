@@ -25,7 +25,7 @@ public class ResultsController {
 
     @RequestMapping("/results")
     String results(@RequestParam(defaultValue = "") String search, Model model) {
-        List<Clothing> clothing = clothingController.clothing(search);
+        List<Clothing> clothing = clothingController.clothing(search.toLowerCase());
         model.addAttribute("clothing", frontEndClothingConverter.convert(clothing));
         return "results";
     }

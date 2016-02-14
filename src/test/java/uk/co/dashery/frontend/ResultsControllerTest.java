@@ -36,14 +36,31 @@ public class ResultsControllerTest {
 
     @Test
     public void testAddsClothingMatchingSearchQueryToModel() {
-        Clothing clothing = new Clothing();
-        clothing.setName(CLOTHING_NAME);
-        when(clothingController.clothing(SEARCH_STRING)).thenReturn(Lists.newArrayList(clothing));
+        withAClothingReturnedFromTheClothingController();
 
         resultsController.results(SEARCH_STRING, mockModel);
 
+        verifyModelContainsRepresentationOfClothingFromClothingController();
+    }
+
+    private void verifyModelContainsRepresentationOfClothingFromClothingController() {
         FrontEndClothing frontEndClothing = new FrontEndClothing();
         frontEndClothing.setName(CLOTHING_NAME);
         verify(mockModel).addAttribute("clothing", Lists.newArrayList(frontEndClothing));
+    }
+
+    private void withAClothingReturnedFromTheClothingController() {
+        Clothing clothing = new Clothing();
+        clothing.setName(CLOTHING_NAME);
+        when(clothingController.clothing(SEARCH_STRING)).thenReturn(Lists.newArrayList(clothing));
+    }
+
+    @Test
+    public void testIgnoresCaseInSearches() {
+        withAClothingReturnedFromTheClothingController();
+
+        resultsController.results(SEARCH_STRING.toUpperCase(), mockModel);
+
+        verifyModelContainsRepresentationOfClothingFromClothingController();
     }
 }
