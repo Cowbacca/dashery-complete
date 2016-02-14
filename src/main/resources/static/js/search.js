@@ -19,7 +19,7 @@ function initSearchTokenfield() {
                         display: 'value',
                     }
         ],
-        delimiter: ' '
+        delimiter: ', '
     })
 
     .on('tokenfield:createdtoken', function (e) {
