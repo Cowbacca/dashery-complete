@@ -112,7 +112,10 @@ h1 {
 }
 
 .img-result {
+    object-fit: cover;
     max-height: 25em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #results > .col-md-4:nth-child(3n+1) {
@@ -122,3 +125,12 @@ h1 {
 a:hover {
     text-decoration: none;
 }
+
+#featured .col-result {
+    vertical-align: bottom;
+}
+
+
+
+
+
