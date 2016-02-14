@@ -19,7 +19,7 @@ function initSearchTokenfield() {
                         display: 'value',
                     }
         ],
-        delimiter: ', '
+        delimiter: ' '
     })
 
     .on('tokenfield:createdtoken', function (e) {
@@ -67,7 +67,7 @@ $(document).ready(function () {
     location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
 
     if(queryDict["search"]) {
-        $('.tokenfield-search').val(queryDict["search"]);
+        $('.tokenfield-search').val(queryDict["search"].replace(",",  " "));
     }
 
     initSearchTokenfield.call(this);
