@@ -17,6 +17,7 @@ body {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+    padding-bottom: 5em;
 }
 
 h1 {
@@ -27,9 +28,8 @@ h1 {
 #search {
     margin-bottom: 1em;
     color: white;
-    background: url(../img/britishflag.jpg) #2D2F3C no-repeat;
+    background: url(../img/sheep.jpg) #2D2F3C no-repeat;
     background-size: cover;
-    background-position: center;
     height: 60vh;
 }
 
