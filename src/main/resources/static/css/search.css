@@ -130,6 +130,13 @@ a:hover {
     vertical-align: bottom;
 }
 
+.navbar-search {
+    width: 50%;
+}
+
+.navbar-tokenfield {
+    width: 100%;
+}
 
 
 

@@ -27,17 +27,19 @@
                 <a class="navbar-brand dashery" href="/">Dashery</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="https://dasherydev.wordpress.com/">Dev Blog</a></li>
-                </ul>
-                <div class="navbar-form navbar-left tokenfield">
-                    <div class="input-group">
+                <div class="navbar-form navbar-left tokenfield navbar-search">
+                    <div class="input-group navbar-tokenfield">
                         <input type="text" class="form-input tokenfield-search"/>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" onclick="search()">Go!</button>
-                </span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" onclick="search()">Go!</button>
+                        </span>
                     </div>
+                </div>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="https://dasherydev.wordpress.com/">Dev Blog</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -75,11 +77,6 @@
         </div>
     </div>
 </div>
-<script th:inline="javascript">
-    prefetchURL = /*[[${@environment.getProperty('dashery.autocomplete.prefetch.url')}]]*/;
-
-
-</script>
 <script type="text/javascript" src='bower_components/jquery/dist/jquery.min.js'></script>
 <script type="text/javascript" src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
 <script type="text/javascript"
