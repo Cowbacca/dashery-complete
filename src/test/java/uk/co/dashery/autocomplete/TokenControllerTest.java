@@ -98,4 +98,13 @@ public class TokenControllerTest {
 
         assertThat(tokensFromController, is(getTokens("aa", "ab", "ac", "ad", "ae")));
     }
+
+    @Test
+    public void testGettingTokensIgnoresCase() {
+        withSomeTokensInTheRepository("lower");
+
+        List<Token> tokensFromController = tokenController.getTokensBeginningWith("Low");
+
+        assertThat(tokensFromController, is(getTokens("lower")));
+    }
 }
