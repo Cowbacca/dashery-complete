@@ -42,4 +42,13 @@ public class ProductFeedFormTest {
 
         assertThat(chars, is(firstFiveChars));
     }
+
+    @Test
+    public void testGeneratesReaderFromZip() throws IOException {
+        ProductFeedForm productFeedForm = new ProductFeedForm(generateCsvFile("test.zip"));
+
+        Reader reader = productFeedForm.generateReader();
+
+        assertThatFirstFiveCharsOfReaderAre(reader, FIRST_FIVE_LETTERS_OF_FILE.toCharArray());
+    }
 }
