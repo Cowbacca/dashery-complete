@@ -2,6 +2,7 @@ package uk.co.dashery.ingestor.productfeed;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.io.IOUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -45,12 +46,12 @@ public class ProductFeedForm {
     }
 
     private InputStream getInputStreamRegardlessOfWhetherInZip(InputStream inputStream) throws IOException {
-        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-
+        byte[] buffer = IOUtils.toByteArray(inputStream);
+        ZipInputStream zipInputStream = new ZipInputStream(new ByteArrayInputStream(buffer));
         if (zipInputStream.getNextEntry() != null) {
             return zipInputStream;
         } else {
-            return inputStream;
+            return new ByteArrayInputStream(buffer);
         }
     }
 }
