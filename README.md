@@ -13,11 +13,12 @@ This project uses Lombok.  To add support for your IDE of choice, see this link:
 
 ## Heroku Setup
 
-Heroku needs to be set up to run npm install first.
+Heroku needs to be set up to run the nginx buildpack in order to make use or reverse proxying.  This is to serve the blog from a subdirectory rather than a subdomain (for SEO reasons).  The NodeJs buildpack is also required for bower to work.
 
 ```bash
-heroku buildpacks:add --index 1 heroku/nodejs
-heroku buildpacks:add --index 2 heroku/java
+heroku buildpacks:add --index 1 https://github.com/ddollar/heroku-buildpack-multi.git
+heroku buildpacks:add --index 2 heroku/nodejs
+heroku buildpacks:add --index 3 heroku/java
 ```
 
 ## Deployment
