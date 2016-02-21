@@ -1,18 +1,33 @@
 {
   "name": "dashery-complete",
-  "description": "",
-  "scripts": {},
-  "env": {
+  "scripts": {
   },
+  "env": {
+    "SPRING_CLOUD_CONFIG_PASSWORD": {
+      "required": true
+    },
+    "SPRING_CLOUD_CONFIG_PROFILE": {
+      "required": true
+    },
+    "SPRING_CLOUD_CONFIG_URI": {
+      "required": true
+    },
+    "SPRING_CLOUD_CONFIG_USER": {
+      "required": true
+    }
+  },
+  "addons": [
+    "mongolab"
+  ],
   "buildpacks": [
     {
       "url": "https://github.com/ryandotsmith/nginx-buildpack.git"
     },
     {
-      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+      "url": "urn:buildpack:heroku/nodejs"
     },
     {
-      "url": "https://github.com/heroku/heroku-buildpack-java"
+      "url": "urn:buildpack:heroku/java"
     }
   ]
 }
