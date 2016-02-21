@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css"/>
+    <link rel="stylesheet" href="bower_components/ihover/src/ihover.min.css"/>
     <link rel="stylesheet" href="css/search.css"/>
 
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'/>
@@ -54,25 +55,44 @@
 
     <div class="container">
         <div class="row text-center strike">
-            <span>ABOUT</span>
+            <span>ARTICLES</span>
         </div>
         <div class="row text-center" id="search-information">
-            <div class="col-md-4">
-                <h2>Token Based Searching</h2>
-
-                <p>Simply type what you are looking for and autocomplete will do the rest! </p>
+            <div class="col-md-3 no-padding article">
+                <a href="#" onclick="alert('Articles coming soon.');">
+                    <img src="./img/article/bag.jpg" alt="Crombie Bag"/>
+                    <div class="article-info">
+                        <h3>Crombie</h3>
+                        <p>Crombie have some nice bags.</p>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <h2>Immediate Results</h2>
-
-                <p>All results will match your specific desires, so no need to go trawling through pages of
-                    Google
-                    results.</p>
+            <div class="col-md-3 no-padding article">
+                <a href="#" onclick="alert('Articles coming soon.');">
+                    <img src="./img/article/interior.jpg" alt="Private White V.C. Interior"/>
+                    <div class="article-info">
+                        <h3>Flagship Interiors</h3>
+                        <p>Interiors of British flagship shops.</p>
+                    </div>
+                </a>
             </div>
-            <div class="col-md-4">
-                <h2>High Quality Clothing</h2>
-
-                <p>Quality garments from the likes of Drake's, Private White V.C., and Marwood.</p>
+            <div class="col-md-3 no-padding article">
+                <a href="#" onclick="alert('Articles coming soon.');">
+                    <img src="./img/article/jacket.jpg" alt="Jacket Required"/>
+                    <div class="article-info">
+                        <h3>Jacket Required</h3>
+                        <p>Jacket Required trade show report.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 no-padding article">
+                <a href="#" onclick="alert('Articles coming soon.');">
+                    <img src="./img/article/sheep.jpg" alt="Romney Marshes Wool"/>
+                    <div class="article-info">
+                            <h3>Romney Marshes Wool</h3>
+                            <p>Meet the sheep of Romney Marshes Wool.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -83,59 +103,101 @@
         </div>
         <div id="results" class="row text-center">
             <div class="col-md-4 col-result">
-                <a href="http://www.drakes.com/online-shop/scarves/archival-hunter-print-wool-and-silk-scarf-9493">
-                    <img src="img/featured/drakes.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Drake's</strong></span>
-                    <br/>
-                    <span>£275</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://www.drakes.com/online-shop/scarves/archival-hunter-print-wool-and-silk-scarf-9493">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/drakes.jpg" alt="Drake's"/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Drake's</h3>
+                                <p>Archival Hunter Print Wool and Silk Scarf</p>
+                                <p><strong>£275</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
             <div class="col-md-4 col-result">
-                <a href="http://www.carriercompany.co.uk/shop/35-men-s-irish-wool-jacket">
-                    <img src="img/featured/carriercompany.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Carrier Company</strong></span>
-                    <br/>
-                    <span>£130</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://www.carriercompany.co.uk/shop/35-men-s-irish-wool-jacket">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/carriercompany.jpg" alt="Carrier Company"/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Carrier Company</h3>
+                                <p>Irish Wool Jacket</p>
+                                <p><strong>£130</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
             <div class="col-md-4 col-result">
-                <a href="http://www.tusting.co.uk/collections-leather-bags/harrold/harrold-chellington-leather-holdall-in-deep-green">
-                    <img src="img/featured/tusting.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Tusting</strong></span>
-                    <br/>
-                    <span>£640</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://www.tusting.co.uk/collections-leather-bags/harrold/harrold-chellington-leather-holdall-in-deep-green">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/tusting.jpg" alt="Tusting"/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Tusting</h3>
+                                <p>Harold Chellington Leather Holdall in Deep Green</p>
+                                <p><strong>£640</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
 
             <div class="col-md-4 col-result">
-                <a href="http://hiutdenim.co.uk/products/selvedge-denim-hacks-2014">
-                    <img src="img/featured/hiut.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Hiut</strong></span>
-                    <br/>
-                    <span>£230</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://hiutdenim.co.uk/products/selvedge-denim-hacks-2014">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/hiut.jpg" alt="Hiut"/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Hiut</h3>
+                                <p>Selvedge Denim Hacks</p>
+                                <p><strong>£230</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
             <div class="col-md-4 col-result">
-                <a href="http://www.marwoodlondon.co.uk/product/marwood-slub-fleck-applique-navy-white/">
-                    <img src="img/featured/marwood.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Marwood</strong></span>
-                    <br/>
-                    <span>£130</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://www.marwoodlondon.co.uk/product/marwood-slub-fleck-applique-navy-white/">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/marwood.jpg" alt="Marwood"/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Marwood</h3>
+                                <p>Slub Fleck Applique Tie - Navy White</p>
+                                <p><strong>£130</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
             <div class="col-md-4 col-result">
-                <a href="http://www.privatewhitevc.com/online-shop/mens/coats-jackets/bestsellers/twin-track-olive-beeswax.html">
-                    <img src="img/featured/privatewhitevc.jpg" class="img-responsive img-result" alt=""/>
-                    <span><strong>Private White V.C.</strong></span>
-                    <br/>
-                    <span>£675</span>
-                </a>
+                <div class="ih-item circle effect13 from_left_and_right center-block">
+                    <a href="http://www.awin1.com/pclick.php?p=3428493847&amp;a=256169&amp;m=6619">
+                        <div class="spinner"></div>
+                        <div class="img"><img src="./img/featured/privatewhitevc.jpg" alt="Private White V.C."/></div>
+                        <div class="info">
+                            <div class="info-back">
+                                <h3>Private White V.C.</h3>
+                                <p>Manchester Pea Coat - Navy Wool</p>
+                                <p><strong>£675</strong></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
         </div>
     </div>
     <div id="footer">

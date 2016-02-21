@@ -30,7 +30,7 @@ h1 {
     color: white;
     background: url(../img/background.jpg) #2D2F3C no-repeat;
     background-size: cover;
-    height: 60vh;
+    height: 50vh;
 }
 
 #search-information {
@@ -138,6 +138,36 @@ a:hover {
     width: 100%;
 }
 
+.article-info {
+    background: #333;
+    text-align: center;
+}
 
+.article-info h3 {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 0.85em 0.8em 0 0.5em;
+    margin: 00;
+}
 
+.article-info p {
+    font-style: italic;
+    font-size: 0.85em;
+    color: #bbb;
+    padding: 0.6em;
+}
 
+.article {
+    border: 8px solid #fff;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.article img {
+    width: 100%;
+}
+
+.no-padding {
+    padding: 0;
+}

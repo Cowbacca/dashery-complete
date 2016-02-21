@@ -11,6 +11,7 @@
     "bootstrap-tokenfield": "~0.12.1",
     "corejs-typeahead": "master",
     "handlebars": "~4.0.2",
+    "ihover": "~1.0.0",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4"
   },
