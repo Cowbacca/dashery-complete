@@ -122,6 +122,10 @@ h1 {
     clear: both;
 }
 
+.ais-hits > .ais-hits--item:nth-child(3n+4) .col-md-4 {
+    clear: both;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -137,7 +141,3 @@ a:hover {
 .navbar-tokenfield {
     width: 100%;
 }
-
-
-
-

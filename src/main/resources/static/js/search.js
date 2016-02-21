@@ -77,11 +77,11 @@ $(document).ready(function () {
 function search() {
     var tokens = $('.tokenfield-search').tokenfield('getTokens');
     if(tokens.length > 0){
-        var searchQuery = '?search='
+        var searchQuery = '?q='
             + $.map(tokens, function(token){
                 return token.value;
-            }).join(',');
-        window.location.href = 'results' + searchQuery;
+            }).join(' ');
+        window.location.href = 'algolia-search' + searchQuery;
     } else {
         alert('Please enter some tokens!');
     }
