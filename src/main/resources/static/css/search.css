@@ -138,3 +138,42 @@ a:hover {
     width: 100%;
 }
 
+.article-info {
+        height: 65px;
+        background: #333;
+              visibility: visible;
+                    opacity: 1;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        text-align: center;
+    }
+
+.article-info h3 {
+                text-transform: uppercase;
+                color: #fff;
+                text-align: center;
+                font-size: 17px;
+                padding: 10px 10px 0 4px;
+                margin: 4px 0 0 0;
+            }
+
+.article-info p {
+                font-style: italic;
+                font-size: 12px;
+                position: relative;
+                color: #bbb;
+                padding: 5px;
+                text-align: center;
+            }
+
+.square img {
+    -webkit-transform: translateY(-50px);
+    -ms-transform: translateY(-50px);
+    transform: translateY(-50px);
+}
+
+.square {
+ overflow: hidden;
+}
