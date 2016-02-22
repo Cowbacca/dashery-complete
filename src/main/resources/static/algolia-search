@@ -40,29 +40,39 @@
             </div>
         </div>
     </nav>
-    <header>
-        <div id="search-input"></div>
-        <div id="search-input-icon"></div>
-    </header>
-    <main class="container">
-        <div id="left-column">
-            <div id="category" class="facet"></div>
-            <div id="brand" class="facet"></div>
-            <div id="price" class="facet"></div>
-            <div id="type" class="facet"></div>
+    <div class="container">
+        <div class="row">
+            <header>
+                <div class="col-md-offset-4 col-md-8">
+                    <div id="search-input"></div>
+                    <div id="search-input-icon"></div>
+                </div>
+            </header>
         </div>
+        <main>
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div id="category" class="facet"></div>
+                <div id="brand" class="facet"></div>
+                <div id="price" class="facet"></div>
+                <div id="type" class="facet"></div>
+            </div>
 
 
-        <div id="right-column">
-            <div id="sort-by-wrapper"><span id="sort-by"></span></div>
-            <div id="stats"></div>
-            <div id="hits" class="row text-center"></div>
-            <div id="pagination"></div>
-            <div id="algolia-link">
-                <a href="https://www.algolia.com/" title="Algolia">Powered by <img src="./img/Algolia_logo_bg-white.jpg"/></a>
+            <div class="col-md-8 col-xs-12">
+                <div id="sort-by-wrapper"><span id="sort-by"></span></div>
+                <div id="stats"></div>
+                <div id="hits" class="row text-center"></div>
+                <div class="row">
+                    <div id="pagination" class="col-md-6 col-md-offset-3"></div>
+                </div>
+                <div id="algolia-link">
+                    <a href="https://www.algolia.com/" title="Algolia">Powered by <img src="./img/Algolia_logo_bg-white.jpg"/></a>
+                </div>
             </div>
         </div>
-    </main>
+        </main>
+    </div>
     <footer>
         <div class="container text-center">
             <a href="https://dasherydev.wordpress.com/">dashery dev blog</a>
