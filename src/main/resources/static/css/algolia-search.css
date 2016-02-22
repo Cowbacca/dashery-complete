@@ -33,13 +33,7 @@ header {
   height: 80px;
   margin-top: 40px;
 }
-header img {
-  position: absolute;
-  top: 9px;
-  left: 0;
-  float: left;
-  max-width: 23%;
-}
+
 #search-input input {
   font-size: 28px;
   font-weight: 100;

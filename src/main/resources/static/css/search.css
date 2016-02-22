@@ -141,3 +141,12 @@ a:hover {
 .navbar-tokenfield {
     width: 100%;
 }
+
+#algolia-link {
+    float:right;
+}
+
+#algolia-link img {
+    width: 5em;
+}
+

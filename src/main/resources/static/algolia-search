@@ -41,7 +41,6 @@
         </div>
     </nav>
     <header>
-        <a href="." title="Home"><img src="img/instant_search_logo@2x.png"/></a>
         <div id="search-input"></div>
         <div id="search-input-icon"></div>
     </header>
@@ -59,6 +58,9 @@
             <div id="stats"></div>
             <div id="hits" class="row text-center"></div>
             <div id="pagination"></div>
+            <div id="algolia-link">
+                <a href="https://www.algolia.com/" title="Algolia">Powered by <img src="./img/Algolia_logo_bg-white.jpg"/></a>
+            </div>
         </div>
     </main>
     <footer>
