@@ -142,11 +142,7 @@ a:hover {
     width: 100%;
 }
 
-#algolia-link {
-    float:right;
-}
-
-#algolia-link img {
-    width: 5em;
+body {
+    padding-top: 50px;
 }
 

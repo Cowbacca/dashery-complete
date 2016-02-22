@@ -28,12 +28,6 @@ main {
 }*/
 
 /* INPUT */
-header {
-  position: relative;
-  height: 80px;
-  margin-top: 40px;
-}
-
 #search-input input {
   font-size: 28px;
   font-weight: 100;
@@ -338,4 +332,44 @@ footer a {
 footer a:hover {
   text-decoration: underline;
   color: #ed5565;
+}
+
+header {
+    margin-top: 1px;
+    padding-top: 30px;
+    background: white;
+    z-index: 1030;
+}
+
+#algolia-link {
+    float:right;
+}
+
+#algolia-link img {
+    width: 5em;
+}
+
+#search-facets {
+
+}
+
+@media (min-width: 768px) {
+    main {
+        padding-top: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    #hits {
+        padding-top: 375px;
+    }
+}
+
+@media (max-width: 768px) {
+    #side-box {
+        background-color: white;
+        z-index: 1029;
+        padding-top: 110px;
+        width: 100%;
+    }
 }
