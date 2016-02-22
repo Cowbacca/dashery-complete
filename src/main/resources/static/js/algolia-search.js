@@ -13,7 +13,7 @@ var widgets = [
 
   instantsearch.widgets.hits({
       container: '#hits',
-      hitsPerPage: 9,
+      hitsPerPage: 18,
       templates: {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')
