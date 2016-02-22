@@ -71,3 +71,7 @@ function getTemplate(templateName) {
 function getHeader(title) {
   return '<h5>' + title + '</h5>';
 }
+
+function imageError(image) {
+    $(image).parent().parent().parent().appendTo($(".ais-hits")).hide();
+}
