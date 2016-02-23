@@ -30,7 +30,7 @@ h1 {
     color: white;
     background: url(../img/background.jpg) #2D2F3C no-repeat;
     background-size: cover;
-    height: 80vh;
+    height: 60vh;
 }
 
 #search-information {
@@ -71,6 +71,8 @@ h1 {
 }
 
 .strike {
+font-weight: bold;
+    font-size: x-large;
     display: block;
     text-align: center;
     overflow: hidden;
