@@ -43,7 +43,6 @@ http {
 		}
 
 		location /blog {
-		    proxy_set_header X-Forwarded-Server $host;
 		    proxy_pass http://dashery-cms.herokuapp.com/;
 		}
 	}
