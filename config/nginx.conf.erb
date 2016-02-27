@@ -27,7 +27,7 @@ http {
 	client_body_timeout 5;
 
 	upstream app_server {
-		server localhost:60000 fail_timeout=0;
+		server localhost:<%= ENV["APP_PORT"] %> fail_timeout=0;
  	}
 
 	server {
