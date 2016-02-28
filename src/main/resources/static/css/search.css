@@ -2,6 +2,10 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+section {
+    margin-bottom: 3em;
+}
+
 .dashery {
     font-family: 'Merriweather', serif;
     font-weight: 500;
@@ -31,11 +35,6 @@ h1 {
     background: url(../img/background.jpg) #2D2F3C no-repeat;
     background-size: cover;
     height: 80vh;
-}
-
-#search-information {
-    margin-top: 1em;
-    margin-bottom: 4em;
 }
 
 .search-top {
