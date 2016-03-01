@@ -10,6 +10,7 @@ $(document).ready(function () {
 function xmlParser(xml) {
     $(xml).find('entry:not(:has(category[term="development"]))').each(function (index) {
         var title = $(this).find('title').text();
+        var summary = $(this).find('summary p').text();
         var link = $(this).find('link[rel="alternate"]').attr('href');
         var image = $(this).find('link[rel="image"]').attr('href');
         
@@ -18,12 +19,12 @@ function xmlParser(xml) {
                     + '<img src="'+image+'" alt="'+title+'"/>'
                     + '<div class="article-info">'
                             + '<h3>'+title+'</h3>'
-                            + '<p>Some text here.</p>'
+                            + '<p>'+summary+'</p>'
                     + '</div>'
                 + '</a>'
             + '</div>';
             
         $("#articles").append(article);
-        return index < 4;
+        return index < 3;
     });
 }
