@@ -12,6 +12,17 @@ function xmlParser(xml) {
         var title = $(this).find('title').text();
         var link = $(this).find('link[rel="alternate"]').attr('href');
         var image = $(this).find('link[rel="image"]').attr('href');
-        console.log("Article with title: " + title + " at " + link + " with image " + image);
+        
+        var article = '<div class="col-md-3 no-padding article">'
+            + '<a href="'+link+'">'
+                    + '<img src="'+image+'" alt="'+title+'"/>'
+                    + '<div class="article-info">'
+                            + '<h3>'+title+'</h3>'
+                            + '<p>Some text here.</p>'
+                    + '</div>'
+                + '</a>'
+            + '</div>';
+            
+        $("#articles").append(article);
     });
 }
