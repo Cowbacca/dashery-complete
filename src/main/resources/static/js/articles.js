@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: "http://dashery-complete-staging.herokuapp.com/blog/articles.xml",
+        url: "/blog/articles.xml",
         dataType: "xml",
         success: xmlParser
     });
