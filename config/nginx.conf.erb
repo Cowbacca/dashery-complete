@@ -46,9 +46,5 @@ http {
 		    proxy_pass http://dashery-cms.herokuapp.com/;
             proxy_set_header X-Forwarded-Host $host/blog;
 		}
-		
-		location /blog/articles.xml {
-    		add_header Access-Control-Allow-Origin *;
-		}
 	}
 }
