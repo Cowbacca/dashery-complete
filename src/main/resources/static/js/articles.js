@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 function xmlParser(xml) {
-    $(xml).find('entry:not(:has(category[term="development"]))').each(function () {
+    $(xml).find('entry:not(:has(category[term="development"]))').each(function (index) {
         var title = $(this).find('title').text();
         var link = $(this).find('link[rel="alternate"]').attr('href');
         var image = $(this).find('link[rel="image"]').attr('href');
@@ -24,5 +24,6 @@ function xmlParser(xml) {
             + '</div>';
             
         $("#articles").append(article);
+        return index < 4;
     });
 }
