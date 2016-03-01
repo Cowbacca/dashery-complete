@@ -14,6 +14,9 @@
     },
     "SPRING_CLOUD_CONFIG_USER": {
       "required": true
+    },
+    "APP_PORT": {
+      "required": true
     }
   },
   "addons": [
