@@ -23,12 +23,12 @@ public class ClothingTest {
         Clothing clothing = new Clothing();
         clothing.setName("a test name");
 
-        assertThat(clothing.getTags(), is(getTags("a", TAG, "name")));
+        assertThat(clothing.getTags(), is(getTags(Clothing.NAME_SCORE_MULTIPLIER, "a", TAG, "name")));
     }
 
-    private Set<Tag> getTags(String... values) {
+    private Set<Tag> getTags(int scoreMultiplier, String... values) {
         return Arrays.stream(values)
-                .map(value -> new Tag(value, Clothing.NAME_SCORE_MULTIPLIER))
+                .map(value -> new Tag(value, scoreMultiplier))
                 .collect(Collectors.toSet());
     }
 
@@ -85,6 +85,14 @@ public class ClothingTest {
         Tag expectedTag = new Tag("test", 2 * Clothing.SEARCHABLE_TEXT_SCORE_MULTIPLIER);
 
         assertThat(clothing.getTags(), is(Sets.newHashSet(expectedTag)));
+    }
+    
+    @Test
+    public void testAddsBrandToTags() {
+        Clothing clothing = new Clothing();
+        clothing.setBrand("Some Brand");
+
+        assertThat(clothing.getTags(), is(getTags(Clothing.BRAND_SCORE_MULTIPLIER, "some", "brand")));
     }
 
 }

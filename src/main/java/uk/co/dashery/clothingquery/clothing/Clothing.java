@@ -24,6 +24,7 @@ public class Clothing {
 
     public static final CharMatcher PUNCTUATION_MATCHER = CharMatcher.anyOf(",. \n\t\\\"'][#*:()-`’");
     public static final int NAME_SCORE_MULTIPLIER = 10;
+    public static final int BRAND_SCORE_MULTIPLIER = 5;
     public static final int SEARCHABLE_TEXT_SCORE_MULTIPLIER = 1;
 
     @Id
@@ -86,6 +87,7 @@ public class Clothing {
     @JsonProperty("merchant")
     public void setBrand(String brand) {
         this.brand = brand;
+        addNewTags(brand, BRAND_SCORE_MULTIPLIER);
     }
 
     public void setName(String name) {
