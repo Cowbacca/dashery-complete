@@ -170,3 +170,17 @@ a:hover {
 .no-padding {
     padding: 0;
 }
+
+.navbar-form {
+    overflow: auto;
+}
+
+.navbar-form .form-control {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.navbar-form .form-group {
+    display: inline;
+}

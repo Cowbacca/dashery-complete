@@ -28,16 +28,16 @@ public class Product {
 
     public JSONObject toJsonObject() {
         try {
-                        return new JSONObject()
-                                .put("objectID", id + "-" + merchant)
-                                .put("brand", merchant)
-                                .put("name", name)
-                                .put("price", price)
-                                .put("link", link)
-                                .put("imageLink", imageLink)
-                                .put("description", description);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+            return new JSONObject()
+                    .put("objectID", id + "-" + merchant)
+                    .put("brand", merchant)
+                    .put("name", name)
+                    .put("price", price)
+                    .put("link", link)
+                    .put("imageLink", imageLink)
+                    .put("description", description);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

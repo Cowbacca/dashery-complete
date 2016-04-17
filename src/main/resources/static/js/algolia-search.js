@@ -8,55 +8,24 @@ var search = instantsearch({
 var widgets = [
   instantsearch.widgets.searchBox({
     container: '#search-input',
-    placeholder: 'Search for products'
+      placeholder: 'Search for products',
+      cssClasses: {
+          input: 'form-control'
+      }
   }),
 
   instantsearch.widgets.hits({
-      container: '#hits',
-      hitsPerPage: 18,
+      container: '#results',
+      hitsPerPage: 9,
       templates: {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')
       }
     }),
 
-  instantsearch.widgets.stats({
-    container: '#stats'
-  }),
-
-  instantsearch.widgets.sortBySelector({
-      container: '#sort-by',
-      autoHideContainer: true,
-      indices: [{
-        name: search.indexName, label: 'Most relevant'
-      }, {
-        name: search.indexName + '_instant_search_price_asc', label: 'Lowest price'
-      }, {
-        name: search.indexName + '_instant_search_price_desc', label: 'Highest price'
-      }]
-    }),
-
   instantsearch.widgets.pagination({
       container: '#pagination'
-    }),
-
-    instantsearch.widgets.refinementList({
-      container: '#brand',
-      attributeName: 'brand',
-      limit: 10,
-      operator: 'or',
-      templates: {
-        header: getHeader('Brand')
-      }
-    }),
-
-    instantsearch.widgets.rangeSlider({
-      container: '#price',
-      attributeName: 'price',
-      templates: {
-        header: getHeader('Price')
-      }
-    }),
+  })
 
 ];
 

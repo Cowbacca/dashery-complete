@@ -5,20 +5,19 @@
     <meta charset="UTF-8"/>
     <title>Dashery</title>
 
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.min.css"/>
-    <link rel="stylesheet" href="bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css"/>
-    <link rel="stylesheet" href="css/search.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.min.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css"/>
+    <link rel="stylesheet" href="/css/search.css"/>
 
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'/>
     <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'/>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
-    <link rel="stylesheet" href="css/algolia-search.css"/>
 </head>
 <body>
 <div class="wrap">
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -31,6 +30,10 @@
                 <a class="navbar-brand dashery" href="/">Dashery</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="navbar-form navbar-left navbar-search">
+                    <div id="search-input">
+                    </div>
+                </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
@@ -39,61 +42,26 @@
                 </div>
             </div>
         </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <header class="affix">
-                <div class="container">
-                    <div class="col-md-offset-4 col-md-8">
-                        <div id="search-input"></div>
-                        <div id="search-input-icon"></div>
-                        <div id="sort-by-wrapper"><span id="sort-by"></span></div>
-                        <div id="stats"></div>
-                    </div>
-                </div>
-            </header>
+    </nav>    <div class="container">
+        <div id="results" class="row text-center">
         </div>
-        <main>
-        <div class="row">
-            <div id="side-box" class="affix">
-                <div class="container">
-                    <div id="search-facets" class="col-md-4 col-xs-12">
-                        <div id="search-facets-content">
-                            <div id="category" class="facet"></div>
-                            <div id="brand" class="facet"></div>
-                            <div id="price" class="facet"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-8 col-md-offset-4 col-xs-12">
-                <div id="hits" class="row text-center"></div>
-                <div class="row">
-                    <div id="pagination" class="col-md-6 col-md-offset-3"></div>
-                </div>
-                <div id="algolia-link">
-                    <a href="https://www.algolia.com/" title="Algolia">Powered by <img src="./img/Algolia_logo_bg-white.jpg"/></a>
-                </div>
-            </div>
+        <div id="pagination" class="text-center">
         </div>
-        </main>
     </div>
-    <footer>
+    <div id="footer">
         <div class="container text-center">
             <a href="https://dasherydev.wordpress.com/">dashery dev blog</a>
         </div>
         <div class="container text-center">
             © Dashery
         </div>
-    </footer>
+    </div>
 </div>
-<script type="text/javascript" src='bower_components/jquery/dist/jquery.min.js'></script>
-<script type="text/javascript" src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
-<script type="text/javascript" src='bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js'></script>
-<script type="text/javascript" src='bower_components/corejs-typeahead/dist/typeahead.bundle.min.js'></script>
-<script type="text/javascript" src='bower_components/handlebars/handlebars.min.js'></script>
+<script type="text/javascript" src='/bower_components/jquery/dist/jquery.min.js'></script>
+<script type="text/javascript" src='/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type="text/javascript" src='/bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.min.js'></script>
+<script type="text/javascript" src='/bower_components/corejs-typeahead/dist/typeahead.bundle.min.js'></script>
+<script type="text/javascript" src='/bower_components/handlebars/handlebars.min.js'></script>
 <script type="text/html" id="hit-template">
     <div class="col-md-4 col-result hit-content">
         <a href="{{link}}" onclick="trackOutboundLink('{{link}}'); return false;">
