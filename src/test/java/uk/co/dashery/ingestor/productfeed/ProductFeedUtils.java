@@ -13,7 +13,7 @@ public class ProductFeedUtils {
         return Lists.newArrayList(
                 new Product("id123", "A Test Brand", "Test Item", "Some description or other.",
                         10000, "a_link.html", "image.jpg"),
-                new Product("id456", "Another Day", "Another Dollar", "A different description.",
+                new Product("id456", "A Test Brand", "Another Dollar", "A different description.",
                         200, "different_link",
                         "image2.jpg"));
     }
