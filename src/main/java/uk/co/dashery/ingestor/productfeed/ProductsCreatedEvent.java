@@ -1,16 +1,12 @@
 package uk.co.dashery.ingestor.productfeed;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 
 
-@AllArgsConstructor
-@EqualsAndHashCode
+@Value
 public class ProductsCreatedEvent {
-
-    @Getter
     private List<Product> products;
+    private String brand;
 }
