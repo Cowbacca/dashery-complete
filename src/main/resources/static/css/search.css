@@ -195,3 +195,7 @@ a:hover {
     width: 80%;
     float: left;
 }
+
+.input-group .btn {
+    height: 34px;
+}
