@@ -8,9 +8,11 @@ var search = instantsearch({
 var widgets = [
   instantsearch.widgets.searchBox({
     container: '#search-input',
+      poweredBy: true,
       placeholder: 'Search for products',
       cssClasses: {
-          input: 'form-control'
+          input: 'search form-control',
+          poweredBy: 'powered-by'
       }
   }),
 
