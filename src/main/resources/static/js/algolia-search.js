@@ -22,6 +22,12 @@ var widgets = [
       templates: {
         item: getTemplate('hit'),
         empty: getTemplate('no-results')
+      },
+      transformData: {
+          item: function (item) {
+              item.price = '£' + (item.price / 100);
+              return item;
+          }
       }
     }),
 
@@ -37,10 +43,6 @@ search.start();
 
 function getTemplate(templateName) {
   return document.querySelector('#' + templateName + '-template').innerHTML;
-}
-
-function getHeader(title) {
-  return '<h5>' + title + '</h5>';
 }
 
 function imageError(image) {
