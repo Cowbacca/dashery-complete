@@ -2,6 +2,10 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+section {
+    margin-bottom: 3em;
+}
+
 .dashery {
     font-family: 'Merriweather', serif;
     font-weight: 500;
@@ -30,12 +34,7 @@ h1 {
     color: white;
     background: url(../img/background.jpg) #2D2F3C no-repeat;
     background-size: cover;
-    height: 60vh;
-}
-
-#search-information {
-    margin-top: 1em;
-    margin-bottom: 4em;
+    height: 80vh;
 }
 
 .search-top {
@@ -122,10 +121,6 @@ h1 {
     clear: both;
 }
 
-.ais-hits > .ais-hits--item:nth-child(3n+4) .col-md-4 {
-    clear: both;
-}
-
 a:hover {
     text-decoration: none;
 }
@@ -142,7 +137,36 @@ a:hover {
     width: 100%;
 }
 
-body {
-    padding-top: 50px;
+.article-info {
+    background: #333;
+    text-align: center;
 }
 
+.article-info h3 {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 0.85em 0.8em 0 0.5em;
+    margin: 00;
+}
+
+.article-info p {
+    font-style: italic;
+    font-size: 0.85em;
+    color: #bbb;
+    padding: 0.6em;
+}
+
+.article {
+    border: 8px solid #fff;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.article img {
+    width: 100%;
+}
+
+.no-padding {
+    padding: 0;
+}

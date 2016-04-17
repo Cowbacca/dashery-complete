@@ -1,4 +1,4 @@
-# dashery-complete [![Build Status](https://travis-ci.org/Cowbacca/dashery-complete.svg?branch=master)](https://travis-ci.org/Cowbacca/dashery-complete) [![codecov.io](https://codecov.io/github/Cowbacca/dashery-complete/coverage.svg?branch=master)](https://codecov.io/github/Cowbacca/dashery-complete?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/grade/ba04b747502042578a31db07daacb2ee)](https://www.codacy.com/app/Cowbacca/dashery-complete)
+# dashery-complete [![Build Status](https://travis-ci.org/Cowbacca/dashery-complete.svg?branch=master)](https://travis-ci.org/Cowbacca/dashery-complete) [![codecov.io](https://codecov.io/github/Cowbacca/dashery-complete/coverage.svg?branch=master)](https://codecov.io/github/Cowbacca/dashery-complete?branch=master) 
 Monolithic version of Dashery.  For cheaper deployment to Heroku until microservices are actually needed.
 
 Staging site: https://dashery-complete-staging.herokuapp.com/
