@@ -32,6 +32,10 @@ public class ProductFeedController {
     public void ingestProducts(@ModelAttribute ProductFeedForm productFeedForm) throws IOException {
         ProductFeed productFeed = productFeedFactory.create(productFeedForm);
         List<Product> products = productFeed.getProducts();
-        applicationEventPublisher.publishEvent(new ProductsCreatedEvent(products));
+        applicationEventPublisher.publishEvent(new ProductsCreatedEvent(products, merchant(products)));
+    }
+
+    private String merchant(List<Product> products) {
+        return products.get(0).getMerchant();
     }
 }

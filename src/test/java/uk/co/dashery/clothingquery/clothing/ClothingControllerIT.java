@@ -94,7 +94,7 @@ public class ClothingControllerIT {
     }
 
     private ProductsCreatedEvent getProductsCreatedEvent(Product... products) {
-        return new ProductsCreatedEvent(Lists.newArrayList(products));
+        return new ProductsCreatedEvent(Lists.newArrayList(products), "Test Brand");
     }
 
     @Test

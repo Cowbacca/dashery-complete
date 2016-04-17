@@ -65,7 +65,7 @@ public class ClothingControllerTest {
 
     @Test
     public void testDoesNothingIfProductsCreatedEventContainsNoProducts() {
-        clothingController.handleProductsCreated(new ProductsCreatedEvent(new ArrayList<>()));
+        clothingController.handleProductsCreated(new ProductsCreatedEvent(new ArrayList<>(), MERCHANT));
 
         verifyZeroInteractions(mockClothingRepository, mockApplicationEventPublisher);
     }
@@ -74,6 +74,6 @@ public class ClothingControllerTest {
         Product product = new Product();
         product.setId(id);
         product.setMerchant(MERCHANT);
-        return new ProductsCreatedEvent(Lists.newArrayList(product));
+        return new ProductsCreatedEvent(Lists.newArrayList(product), MERCHANT);
     }
 }
