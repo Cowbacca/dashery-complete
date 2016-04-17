@@ -117,7 +117,7 @@ h1 {
     margin-right: auto;
 }
 
-#results > .col-md-4:nth-child(3n+1) {
+.ais-hits > .ais-hits--item:nth-child(3n+1) {
     clear: both;
 }
 
@@ -147,7 +147,7 @@ a:hover {
     color: #fff;
     font-size: 1.2em;
     padding: 0.85em 0.8em 0 0.5em;
-    margin: 00;
+    margin: 0;
 }
 
 .article-info p {
@@ -169,4 +169,33 @@ a:hover {
 
 .no-padding {
     padding: 0;
+}
+
+.navbar-form {
+    overflow: auto;
+}
+
+.navbar-form .form-control {
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+}
+
+.navbar-form .form-group {
+    display: inline;
+}
+
+.powered-by {
+    float: left;
+    padding-top: 15px;
+    padding-left: 5px;
+}
+
+.search {
+    width: 80%;
+    float: left;
+}
+
+.input-group .btn {
+    height: 34px;
 }
