@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import uk.co.dashery.ingestor.Product;
+import uk.co.dashery.common.ClothingItem;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,60 +33,60 @@ public class ClothingIndexRepositoryTest {
     private Index index;
     @InjectMocks
     private ClothingIndexRepository clothingIndexRepository;
-    private Collection<Product> products;
+    private Collection<ClothingItem> clothingItems;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
 
-        products = Lists.newArrayList(new Product("1", BRAND, NAME, DESCRIPTION, PRICE, LINK, IMAGE_LINK));
+        clothingItems = Lists.newArrayList(new ClothingItem("1", BRAND, NAME, DESCRIPTION, PRICE, LINK, IMAGE_LINK));
     }
 
     @Test
     public void testSavesObjectIDToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("objectID", "1-Test Merchant");
     }
 
     @Test
     public void testSavesBrandToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("brand", BRAND);
     }
 
     @Test
     public void testSavesNameToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("name", NAME);
     }
 
     @Test
     public void testSavesDescriptionToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("description", DESCRIPTION);
     }
 
     @Test
     public void testSavesPriceToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("price", PRICE);
     }
 
     @Test
     public void testSavesLinkToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("link", LINK);
     }
 
     @Test
     public void testSavesImageLinkToIndex() throws Exception {
-        clothingIndexRepository.save(products);
+        clothingIndexRepository.save(clothingItems);
 
         assertThatPropertyIs("imageLink", IMAGE_LINK);
     }

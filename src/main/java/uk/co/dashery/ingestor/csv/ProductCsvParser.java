@@ -3,14 +3,14 @@ package uk.co.dashery.ingestor.csv;
 import com.univocity.parsers.common.processor.RowProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
-import uk.co.dashery.ingestor.Product;
+import uk.co.dashery.common.ClothingItem;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
 public abstract class ProductCsvParser<T extends RowProcessor> {
-    public List<Product> parse(Reader csvReader) throws IOException {
+    public List<ClothingItem> parse(Reader csvReader) throws IOException {
         T rowProcessor = getRowProcessor();
 
         CsvParser parser = createCsvParser(rowProcessor);
@@ -36,5 +36,5 @@ public abstract class ProductCsvParser<T extends RowProcessor> {
         return parserSettings;
     }
 
-    protected abstract List<Product> getProducts(T rowProcessor);
+    protected abstract List<ClothingItem> getProducts(T rowProcessor);
 }

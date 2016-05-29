@@ -1,5 +1,6 @@
 package uk.co.dashery.ingestor;
 
+import uk.co.dashery.common.ClothingItem;
 import uk.co.dashery.ingestor.csv.ProductCsvParser;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ class ProductFeed {
         this.productCsvParser = productCsvParser;
     }
 
-    public List<Product> getProducts() throws IOException {
+    public List<ClothingItem> getClothingItems() throws IOException {
         return productCsvParser.parse(reader);
     }
 }

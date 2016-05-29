@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ProductFeedFormTest {
 
-    public static final String FIRST_FIVE_LETTERS_OF_FILE = "id,me";
+    public static final String FIRST_FIVE_LETTERS_OF_FILE = "id,br";
 
     @Test
     public void testGeneratesReaderFromURL() throws IOException {

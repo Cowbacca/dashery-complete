@@ -4,19 +4,18 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import uk.co.dashery.common.ProductsCreatedEvent;
+import uk.co.dashery.common.ClothingItem;
+import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import javax.inject.Inject;
 import java.util.List;
 
 @Controller
 class ClothingController {
-    private final ProductToClothingConverter productToClothingConverter;
     private final ClothingRepository clothingRepository;
 
     @Inject
-    ClothingController(ProductToClothingConverter productToClothingConverter, ClothingRepository clothingRepository) {
-        this.productToClothingConverter = productToClothingConverter;
+    ClothingController(ClothingRepository clothingRepository) {
         this.clothingRepository = clothingRepository;
     }
 
@@ -24,15 +23,15 @@ class ClothingController {
     @Async
     @EventListener
     @Transactional
-    void handleProductsCreated(ProductsCreatedEvent productsCreatedEvent) {
-        List<Clothing> clothingList = productToClothingConverter.convert(productsCreatedEvent.getProducts());
+    void handleProductFeedIngested(ProductFeedIngestedEvent productFeedIngestedEvent) {
+        List<ClothingItem> clothingItems = productFeedIngestedEvent.getClothingItems();
 
-        if (!clothingList.isEmpty()) {
-            deleteExistingAndSaveNew(productsCreatedEvent.getBrand(), clothingList);
+        if (!clothingItems.isEmpty()) {
+            deleteExistingAndSaveNew(productFeedIngestedEvent.getBrand(), clothingItems);
         }
     }
 
-    private void deleteExistingAndSaveNew(String brand, List<Clothing> clothingList) {
+    private void deleteExistingAndSaveNew(String brand, List<ClothingItem> clothingList) {
         clothingRepository.deleteByBrand(brand);
         clothingRepository.save(clothingList);
     }

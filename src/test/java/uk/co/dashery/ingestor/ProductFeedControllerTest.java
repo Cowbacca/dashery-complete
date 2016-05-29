@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.ui.ExtendedModelMap;
-import uk.co.dashery.common.ProductsCreatedEvent;
+import uk.co.dashery.common.ProductFeedIngestedEvent;
 import uk.co.dashery.ingestor.csv.AffiliateWindowProductCsvParser;
 import uk.co.dashery.ingestor.csv.DasheryProductCsvParser;
 
@@ -43,7 +43,7 @@ public class ProductFeedControllerTest {
     public void testIngestsProducts() throws Exception {
         productFeedController.ingestProducts(new ProductFeedForm(ProductFeedUtils.generateCsvFile("test.csv")));
 
-        verify(applicationEventPublisher).publishEvent(new ProductsCreatedEvent(ProductFeedUtils.expectedProducts(), "A Test Brand"));
+        verify(applicationEventPublisher).publishEvent(new ProductFeedIngestedEvent("A Test Brand", ProductFeedUtils.expectedProducts()));
     }
 
     @Test

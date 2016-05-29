@@ -3,17 +3,18 @@ package uk.co.dashery.ingestor;
 
 import com.google.common.collect.Lists;
 import org.springframework.mock.web.MockMultipartFile;
+import uk.co.dashery.common.ClothingItem;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 public class ProductFeedUtils {
-    public static List<Product> expectedProducts() {
+    public static List<ClothingItem> expectedProducts() {
         return Lists.newArrayList(
-                new Product("id123", "A Test Brand", "Test Item", "Some description or other.",
+                new ClothingItem("id123", "A Test Brand", "Test Item", "Some description or other.",
                         10000, "a_link.html", "image.jpg"),
-                new Product("id456", "A Test Brand", "Another Dollar", "A different description.",
+                new ClothingItem("id456", "A Test Brand", "Another Dollar", "A different description.",
                         200, "different_link",
                         "image2.jpg"));
     }

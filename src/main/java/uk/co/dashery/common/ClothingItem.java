@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor;
+package uk.co.dashery.common;
 
 import com.univocity.parsers.annotations.Parsed;
 import lombok.AllArgsConstructor;
@@ -6,15 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+@Document
+public class ClothingItem {
     @Parsed
     private String id;
     @Parsed
-    private String merchant;
+    private String brand;
     @Parsed
     private String name;
     @Parsed
@@ -26,11 +29,28 @@ public class Product {
     @Parsed
     private String imageLink;
 
+    public ClothingItem(String id) {
+        this();
+        setId(id);
+    }
+
+    @PersistenceConstructor
+    public ClothingItem(String id, String brand, String name, int price, String link, String
+            imageLink, String description) {
+        this.id = id;
+        this.brand = brand;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.link = link;
+        this.imageLink = imageLink;
+    }
+
     public JSONObject toJsonObject() {
         try {
             return new JSONObject()
-                    .put("objectID", id + "-" + merchant)
-                    .put("brand", merchant)
+                    .put("objectID", id + "-" + brand)
+                    .put("brand", brand)
                     .put("name", name)
                     .put("price", price)
                     .put("link", link)

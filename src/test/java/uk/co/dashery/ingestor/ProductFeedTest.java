@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
+import uk.co.dashery.common.ClothingItem;
 import uk.co.dashery.ingestor.csv.AffiliateWindowProductCsvParser;
 import uk.co.dashery.ingestor.csv.CsvFormatException;
 import uk.co.dashery.ingestor.csv.DasheryProductCsvParser;
@@ -36,9 +37,9 @@ public class ProductFeedTest {
         ProductFeed productFeed = productFeedFactory.create(new ProductFeedForm(ProductFeedUtils.generateCsvFile
                 ("test.csv"), false));
 
-        List<Product> products = productFeed.getProducts();
+        List<ClothingItem> clothingItems = productFeed.getClothingItems();
 
-        assertThat(products, Matchers.is(ProductFeedUtils.expectedProducts()));
+        assertThat(clothingItems, Matchers.is(ProductFeedUtils.expectedProducts()));
     }
 
     @Test
@@ -47,9 +48,9 @@ public class ProductFeedTest {
                 ("affiliatewindow.csv"),
                 true));
 
-        List<Product> products = productFeed.getProducts();
+        List<ClothingItem> clothingItems = productFeed.getClothingItems();
 
-        assertThat(products, Matchers.is(ProductFeedUtils.expectedProducts()));
+        assertThat(clothingItems, Matchers.is(ProductFeedUtils.expectedProducts()));
     }
 
     @Test(expected = CsvFormatException.class)
@@ -58,6 +59,6 @@ public class ProductFeedTest {
         ProductFeed productFeed = productFeedFactory.create(
                 new ProductFeedForm(ProductFeedUtils.generateCsvFile("affiliatewindow-no-brand.csv"), true));
 
-        productFeed.getProducts();
+        productFeed.getClothingItems();
     }
 }

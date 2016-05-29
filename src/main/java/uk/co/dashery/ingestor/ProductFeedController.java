@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import uk.co.dashery.common.ProductsCreatedEvent;
+import uk.co.dashery.common.ClothingItem;
+import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -32,11 +33,11 @@ class ProductFeedController {
     @ResponseStatus(HttpStatus.OK)
     void ingestProducts(@ModelAttribute ProductFeedForm productFeedForm) throws IOException {
         ProductFeed productFeed = productFeedFactory.create(productFeedForm);
-        List<Product> products = productFeed.getProducts();
-        applicationEventPublisher.publishEvent(new ProductsCreatedEvent(products, merchant(products)));
+        List<ClothingItem> clothingItems = productFeed.getClothingItems();
+        applicationEventPublisher.publishEvent(new ProductFeedIngestedEvent(merchant(clothingItems), clothingItems));
     }
 
-    private String merchant(List<Product> products) {
-        return products.get(0).getMerchant();
+    private String merchant(List<ClothingItem> clothingItems) {
+        return clothingItems.get(0).getBrand();
     }
 }

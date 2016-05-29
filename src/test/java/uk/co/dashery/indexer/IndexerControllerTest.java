@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import uk.co.dashery.common.ProductsCreatedEvent;
-import uk.co.dashery.ingestor.Product;
+import uk.co.dashery.common.ClothingItem;
+import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class IndexerControllerTest {
     private IndexerController indexerController;
 
     @Mock
-    private Product product;
+    private ClothingItem clothingItem;
 
     @Before
     public void setUp() throws Exception {
@@ -32,12 +32,12 @@ public class IndexerControllerTest {
 
     @Test
     public void testHandleProductsCreatedEvent() throws Exception {
-        List<Product> products = Lists.newArrayList(product);
+        List<ClothingItem> clothingItems = Lists.newArrayList(clothingItem);
 
-        indexerController.handleProductsCreatedEvent(new ProductsCreatedEvent(products, MERCHANT));
+        indexerController.handleProductsCreatedEvent(new ProductFeedIngestedEvent(MERCHANT, clothingItems));
 
         InOrder inOrder = inOrder(clothingIndexRepository);
         inOrder.verify(clothingIndexRepository).deleteByBrand(MERCHANT);
-        inOrder.verify(clothingIndexRepository).save(products);
+        inOrder.verify(clothingIndexRepository).save(clothingItems);
     }
 }

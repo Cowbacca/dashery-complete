@@ -5,7 +5,7 @@ import com.algolia.search.saas.Index;
 import com.algolia.search.saas.Query;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
-import uk.co.dashery.ingestor.Product;
+import uk.co.dashery.common.ClothingItem;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -21,9 +21,9 @@ class ClothingIndexRepository {
         this.clothingIndex = clothingIndex;
     }
 
-    void save(Collection<Product> products) {
+    void save(Collection<ClothingItem> products) {
         List<JSONObject> clothingItems = products.stream()
-                .map(Product::toJsonObject)
+                .map(ClothingItem::toJsonObject)
                 .collect(Collectors.toList());
 
         saveObjects(clothingItems);

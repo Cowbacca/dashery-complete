@@ -5,10 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
-import uk.co.dashery.common.ProductsCreatedEvent;
-import uk.co.dashery.ingestor.Product;
+import uk.co.dashery.common.ClothingItem;
+import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,6 @@ public class ClothingControllerTest {
     @Mock
     private ApplicationEventPublisher mockApplicationEventPublisher;
 
-    @Spy
-    private ProductToClothingConverter productToClothingConverter = new ProductToClothingConverter();
     @InjectMocks
     private ClothingController clothingController;
 
@@ -37,11 +34,11 @@ public class ClothingControllerTest {
 
     @Test
     public void testProcessesNewClothing() {
-        clothingController.handleProductsCreated(getProductsCreatedEvent("id123"));
+        clothingController.handleProductFeedIngested(getProductsCreatedEvent("id123"));
 
-        Clothing clothingItem = new Clothing("id123");
+        ClothingItem clothingItem = new ClothingItem("id123");
         clothingItem.setBrand(MERCHANT);
-        List<Clothing> expectedNewClothing = Lists.newArrayList(clothingItem);
+        List<ClothingItem> expectedNewClothing = Lists.newArrayList(clothingItem);
 
         verify(mockClothingRepository).deleteByBrand(MERCHANT);
         verify(mockClothingRepository).save(expectedNewClothing);
@@ -49,15 +46,15 @@ public class ClothingControllerTest {
 
     @Test
     public void testDoesNothingIfProductsCreatedEventContainsNoProducts() {
-        clothingController.handleProductsCreated(new ProductsCreatedEvent(new ArrayList<>(), MERCHANT));
+        clothingController.handleProductFeedIngested(new ProductFeedIngestedEvent(MERCHANT, new ArrayList<>()));
 
         verifyZeroInteractions(mockClothingRepository, mockApplicationEventPublisher);
     }
 
-    private ProductsCreatedEvent getProductsCreatedEvent(String id) {
-        Product product = new Product();
-        product.setId(id);
-        product.setMerchant(MERCHANT);
-        return new ProductsCreatedEvent(Lists.newArrayList(product), MERCHANT);
+    private ProductFeedIngestedEvent getProductsCreatedEvent(String id) {
+        ClothingItem clothingItem = new ClothingItem();
+        clothingItem.setId(id);
+        clothingItem.setBrand(MERCHANT);
+        return new ProductFeedIngestedEvent(MERCHANT, Lists.newArrayList(clothingItem));
     }
 }
