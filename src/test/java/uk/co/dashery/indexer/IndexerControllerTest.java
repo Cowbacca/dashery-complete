@@ -7,7 +7,7 @@ import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import uk.co.dashery.common.ClothingItem;
-import uk.co.dashery.common.ProductFeedIngestedEvent;
+import uk.co.dashery.common.ClothingItemsPersistedEvent;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class IndexerControllerTest {
     public void testHandleProductsCreatedEvent() throws Exception {
         List<ClothingItem> clothingItems = Lists.newArrayList(clothingItem);
 
-        indexerController.handleProductsCreatedEvent(new ProductFeedIngestedEvent(MERCHANT, clothingItems));
+        indexerController.handleProductsCreatedEvent(new ClothingItemsPersistedEvent(MERCHANT, clothingItems));
 
         InOrder inOrder = inOrder(clothingIndexRepository);
         inOrder.verify(clothingIndexRepository).deleteByBrand(MERCHANT);
