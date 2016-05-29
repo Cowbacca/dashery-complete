@@ -1,7 +1,7 @@
 var search = instantsearch({
-  appId: '06AOGMJW5Z',
-  apiKey: '87476332c8c7436af730fa347c384b8c',
-  indexName: 'staging_clothing',
+  appId: appId,
+  apiKey: apiKey,
+  indexName: indexName,
   urlSync: true
 });
 
