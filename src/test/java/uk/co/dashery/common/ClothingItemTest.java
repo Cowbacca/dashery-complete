@@ -40,6 +40,16 @@ public class ClothingItemTest {
         assertThat(clothingItem.getImageLink(), is("transformedUrl"));
     }
 
+    @Test
+    public void testReplacesAmpersandWithAndInCompositeIDBeforeSubmittingToImageTransformer() {
+        ClothingItem clothingItem = givenAClothingItem("an id", "a & brand", "imageLink");
+        when(imageTransformer.transformedUrl("anid-aandbrand", "imageLink")).thenReturn("transformedUrl");
+
+        clothingItem.transformImage(imageTransformer);
+
+        assertThat(clothingItem.getImageLink(), is("transformedUrl"));
+    }
+
     private ClothingItem givenAClothingItem(String id, String brand, String imageLink) {
         ClothingItem clothingItem = new ClothingItem();
         clothingItem.setId(id);
