@@ -15,7 +15,7 @@ class ResultsController {
     private final String indexName;
 
     @Inject
-    ResultsController(@Value("${algoliasearch.application.id}") String appId, @Value("${algoliasearch.api.key}") String apiKey, @Value("${indexer.index.name}") String indexName) {
+    ResultsController(@Value("${algoliasearch.application.id}") String appId, @Value("${algoliasearch.api.key.search}") String apiKey, @Value("${indexer.index.name}") String indexName) {
         this.appId = appId;
         this.apiKey = apiKey;
         this.indexName = indexName;
