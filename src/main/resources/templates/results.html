@@ -71,7 +71,7 @@
         crossorigin="anonymous"></script>
 <script type="text/html" id="hit-template">
     <div class="col-md-4 col-result hit-content">
-        <a href="{{link}}" onclick="trackOutboundLink('{{link}}'); return false;">
+        <a href="{{link}}">
             <img src="{{imageLink}}"
                  class="img-responsive img-result center-block" onerror="imageError(this)" />
             <span><strong>{{{_highlightResult.brand.value}}}</strong></span>
@@ -88,31 +88,8 @@
         <a href="../static" class='clear-all'>Clear search</a>
     </div>
 </script>
+<script type="text/javascript" src="/js/analytics.js"></script>
 <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
 <script type="text/javascript" src='/js/algolia-search.js'></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-74108805-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<script>
-/**
-* Function that tracks a click on an outbound link in Google Analytics.
-* This function takes a valid URL string as an argument, and uses that URL string
-* as the event label. Setting the transport method to 'beacon' lets the hit be sent
-* using 'navigator.sendBeacon' in browser that support it.
-*/
-var trackOutboundLink = function(url) {
-   ga('send', 'event', 'outbound', 'click', url, {
-     'transport': 'beacon',
-     'hitCallback': function(){document.location = url;}
-   });
-}
-</script>
 </body>
 </html>
