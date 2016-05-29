@@ -3,18 +3,6 @@
   "scripts": {
   },
   "env": {
-    "SPRING_CLOUD_CONFIG_PASSWORD": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_PROFILE": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_URI": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_USER": {
-      "required": true
-    },
     "APP_PORT": {
       "required": true
     }
