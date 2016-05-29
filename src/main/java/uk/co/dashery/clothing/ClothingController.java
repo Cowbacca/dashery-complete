@@ -6,6 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import uk.co.dashery.clothing.image.ImageTransformer;
 import uk.co.dashery.common.ClothingItem;
 import uk.co.dashery.common.ClothingItemsPersistedEvent;
 import uk.co.dashery.common.ProductFeedIngestedEvent;
@@ -18,11 +19,13 @@ import java.util.List;
 class ClothingController {
     private final ClothingRepository clothingRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final ImageTransformer imageTransformer;
 
     @Inject
-    ClothingController(ClothingRepository clothingRepository, ApplicationEventPublisher applicationEventPublisher) {
+    ClothingController(ClothingRepository clothingRepository, ApplicationEventPublisher applicationEventPublisher, ImageTransformer imageTransformer) {
         this.clothingRepository = clothingRepository;
         this.applicationEventPublisher = applicationEventPublisher;
+        this.imageTransformer = imageTransformer;
     }
 
 
@@ -30,13 +33,25 @@ class ClothingController {
     @EventListener
     @Transactional
     void handleProductFeedIngested(ProductFeedIngestedEvent productFeedIngestedEvent) {
+        String brand = productFeedIngestedEvent.getBrand();
         List<ClothingItem> clothingItems = productFeedIngestedEvent.getClothingItems();
 
         if (!clothingItems.isEmpty()) {
-            String brand = productFeedIngestedEvent.getBrand();
+            transformClothingItemsImages(clothingItems);
             deleteExistingAndSaveNew(brand, clothingItems);
             applicationEventPublisher.publishEvent(new ClothingItemsPersistedEvent(brand, clothingItems));
         }
+    }
+
+    private void transformClothingItemsImages(List<ClothingItem> clothingItems) {
+        clothingItems.stream()
+                .forEach(clothingItem -> {
+                    try {
+                        clothingItem.transformImage(imageTransformer);
+                    } catch (Exception e) {
+                        log.warning(e.getMessage());
+                    }
+                });
     }
 
     private void deleteExistingAndSaveNew(String brand, List<ClothingItem> clothingList) {

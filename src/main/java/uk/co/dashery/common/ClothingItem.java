@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import uk.co.dashery.clothing.image.ImageTransformer;
 
 @Data
 @AllArgsConstructor
@@ -49,7 +50,7 @@ public class ClothingItem {
     public JSONObject toJsonObject() {
         try {
             return new JSONObject()
-                    .put("objectID", id + "-" + brand)
+                    .put("objectID", compositeId())
                     .put("brand", brand)
                     .put("name", name)
                     .put("price", price)
@@ -59,5 +60,13 @@ public class ClothingItem {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String compositeId() {
+        return id + "-" + brand;
+    }
+
+    public void transformImage(ImageTransformer imageTransformer) {
+        imageLink = imageTransformer.transformedUrl(compositeId(), imageLink);
     }
 }
