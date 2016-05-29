@@ -28,12 +28,11 @@ class ClothingController {
         List<Clothing> clothingList = productToClothingConverter.convert(productsCreatedEvent.getProducts());
 
         if (!clothingList.isEmpty()) {
-            deleteExistingAndSaveNew(clothingList);
+            deleteExistingAndSaveNew(productsCreatedEvent.getBrand(), clothingList);
         }
     }
 
-    private void deleteExistingAndSaveNew(List<Clothing> clothingList) {
-        String brand = clothingList.get(0).getBrand();
+    private void deleteExistingAndSaveNew(String brand, List<Clothing> clothingList) {
         clothingRepository.deleteByBrand(brand);
         clothingRepository.save(clothingList);
     }
