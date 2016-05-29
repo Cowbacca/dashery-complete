@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquery;
+package uk.co.dashery.clothing;
 
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;

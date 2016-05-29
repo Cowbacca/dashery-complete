@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquery.clothing;
+package uk.co.dashery.clothing;
 
 import org.springframework.stereotype.Component;
 import uk.co.dashery.ingestor.productfeed.Product;

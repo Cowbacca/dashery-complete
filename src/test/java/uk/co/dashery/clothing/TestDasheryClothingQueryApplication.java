@@ -1,4 +1,4 @@
-package uk.co.dashery.clothingquery;
+package uk.co.dashery.clothing;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableMBeanExport;
@@ -8,6 +8,6 @@ import uk.co.dashery.TestMongoConfiguration;
 @Configuration
 @Import({TestMongoConfiguration.class})
 @EnableMBeanExport(defaultDomain = "clothingtest")
-public class TestDasheryClothingQueryApplication extends ClothingQueryConfig {
+public class TestDasheryClothingQueryApplication extends ClothingConfig {
 
 }

@@ -1,8 +1,7 @@
-package uk.co.dashery.clothingquery;
+package uk.co.dashery.clothing;
 
 
 import lombok.Value;
-import uk.co.dashery.clothingquery.clothing.Clothing;
 
 import java.util.List;
 
