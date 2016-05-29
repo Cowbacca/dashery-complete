@@ -7,7 +7,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
-import uk.co.dashery.clothing.*;
+import uk.co.dashery.clothing.Clothing;
+import uk.co.dashery.clothing.ClothingController;
+import uk.co.dashery.clothing.ClothingRepository;
+import uk.co.dashery.clothing.ProductToClothingConverter;
 import uk.co.dashery.ingestor.productfeed.Product;
 import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
 
@@ -46,7 +49,6 @@ public class ClothingControllerTest {
 
         verify(mockClothingRepository).deleteByBrand(MERCHANT);
         verify(mockClothingRepository).save(expectedNewClothing);
-        verify(mockApplicationEventPublisher).publishEvent(new ClothingAddedEvent(expectedNewClothing));
     }
 
     @Test

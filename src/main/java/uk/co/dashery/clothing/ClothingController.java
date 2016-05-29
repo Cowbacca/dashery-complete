@@ -1,6 +1,5 @@
 package uk.co.dashery.clothing;
 
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
@@ -14,13 +13,11 @@ import java.util.List;
 public class ClothingController {
     private final ProductToClothingConverter productToClothingConverter;
     private final ClothingRepository clothingRepository;
-    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Inject
-    public ClothingController(ProductToClothingConverter productToClothingConverter, ClothingRepository clothingRepository, ApplicationEventPublisher applicationEventPublisher) {
+    public ClothingController(ProductToClothingConverter productToClothingConverter, ClothingRepository clothingRepository) {
         this.productToClothingConverter = productToClothingConverter;
         this.clothingRepository = clothingRepository;
-        this.applicationEventPublisher = applicationEventPublisher;
     }
 
 
@@ -32,7 +29,6 @@ public class ClothingController {
 
         if (!clothingList.isEmpty()) {
             deleteExistingAndSaveNew(clothingList);
-            applicationEventPublisher.publishEvent(new ClothingAddedEvent(clothingList));
         }
     }
 
