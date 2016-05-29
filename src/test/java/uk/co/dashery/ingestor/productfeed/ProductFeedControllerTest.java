@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.ui.ExtendedModelMap;
+import uk.co.dashery.common.ProductsCreatedEvent;
 import uk.co.dashery.ingestor.productfeed.csv.AffiliateWindowProductCsvParser;
 import uk.co.dashery.ingestor.productfeed.csv.DasheryProductCsvParser;
 

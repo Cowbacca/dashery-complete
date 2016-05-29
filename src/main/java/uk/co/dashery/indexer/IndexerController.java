@@ -4,7 +4,7 @@ import com.algolia.search.saas.AlgoliaException;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
+import uk.co.dashery.common.ProductsCreatedEvent;
 
 import javax.inject.Inject;
 

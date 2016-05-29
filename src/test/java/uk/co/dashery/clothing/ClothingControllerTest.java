@@ -1,4 +1,4 @@
-package uk.co.dashery.clothing.clothing;
+package uk.co.dashery.clothing;
 
 import com.google.common.collect.Lists;
 import org.junit.Before;
@@ -7,12 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
-import uk.co.dashery.clothing.Clothing;
-import uk.co.dashery.clothing.ClothingController;
-import uk.co.dashery.clothing.ClothingRepository;
-import uk.co.dashery.clothing.ProductToClothingConverter;
+import uk.co.dashery.common.ProductsCreatedEvent;
 import uk.co.dashery.ingestor.productfeed.Product;
-import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
 
 import java.util.ArrayList;
 import java.util.List;

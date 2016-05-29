@@ -1,6 +1,7 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.common;
 
 import lombok.Value;
+import uk.co.dashery.ingestor.productfeed.Product;
 
 import java.util.List;
 

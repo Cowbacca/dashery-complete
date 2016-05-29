@@ -4,7 +4,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import uk.co.dashery.ingestor.productfeed.ProductsCreatedEvent;
+import uk.co.dashery.common.ProductsCreatedEvent;
 
 import javax.inject.Inject;
 import java.util.List;
