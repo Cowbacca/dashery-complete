@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,15 +8,13 @@ import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.ui.ExtendedModelMap;
 import uk.co.dashery.common.ProductsCreatedEvent;
-import uk.co.dashery.ingestor.productfeed.csv.AffiliateWindowProductCsvParser;
-import uk.co.dashery.ingestor.productfeed.csv.DasheryProductCsvParser;
+import uk.co.dashery.ingestor.csv.AffiliateWindowProductCsvParser;
+import uk.co.dashery.ingestor.csv.DasheryProductCsvParser;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
-import static uk.co.dashery.ingestor.productfeed.ProductFeedUtils.expectedProducts;
-import static uk.co.dashery.ingestor.productfeed.ProductFeedUtils.generateCsvFile;
 
 public class ProductFeedControllerTest {
 
@@ -43,9 +41,9 @@ public class ProductFeedControllerTest {
 
     @Test
     public void testIngestsProducts() throws Exception {
-        productFeedController.ingestProducts(new ProductFeedForm(generateCsvFile("test.csv")));
+        productFeedController.ingestProducts(new ProductFeedForm(ProductFeedUtils.generateCsvFile("test.csv")));
 
-        verify(applicationEventPublisher).publishEvent(new ProductsCreatedEvent(expectedProducts(), "A Test Brand"));
+        verify(applicationEventPublisher).publishEvent(new ProductsCreatedEvent(ProductFeedUtils.expectedProducts(), "A Test Brand"));
     }
 
     @Test

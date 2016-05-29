@@ -10,12 +10,12 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Controller
-public class ClothingController {
+class ClothingController {
     private final ProductToClothingConverter productToClothingConverter;
     private final ClothingRepository clothingRepository;
 
     @Inject
-    public ClothingController(ProductToClothingConverter productToClothingConverter, ClothingRepository clothingRepository) {
+    ClothingController(ProductToClothingConverter productToClothingConverter, ClothingRepository clothingRepository) {
         this.productToClothingConverter = productToClothingConverter;
         this.clothingRepository = clothingRepository;
     }
@@ -24,7 +24,7 @@ public class ClothingController {
     @Async
     @EventListener
     @Transactional
-    public void handleProductsCreated(ProductsCreatedEvent productsCreatedEvent) {
+    void handleProductsCreated(ProductsCreatedEvent productsCreatedEvent) {
         List<Clothing> clothingList = productToClothingConverter.convert(productsCreatedEvent.getProducts());
 
         if (!clothingList.isEmpty()) {

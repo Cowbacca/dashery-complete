@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;

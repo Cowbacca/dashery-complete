@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import org.junit.Test;
 
@@ -7,7 +7,6 @@ import java.io.Reader;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static uk.co.dashery.ingestor.productfeed.ProductFeedUtils.generateCsvFile;
 
 public class ProductFeedFormTest {
 
@@ -28,7 +27,7 @@ public class ProductFeedFormTest {
 
     @Test
     public void testGeneratesReaderFromFile() throws IOException {
-        ProductFeedForm productFeedForm = new ProductFeedForm(generateCsvFile("test.csv"));
+        ProductFeedForm productFeedForm = new ProductFeedForm(ProductFeedUtils.generateCsvFile("test.csv"));
 
         Reader reader = productFeedForm.generateReader();
 
@@ -45,7 +44,7 @@ public class ProductFeedFormTest {
 
     @Test
     public void testGeneratesReaderFromZip() throws IOException {
-        ProductFeedForm productFeedForm = new ProductFeedForm(generateCsvFile("test.zip"));
+        ProductFeedForm productFeedForm = new ProductFeedForm(ProductFeedUtils.generateCsvFile("test.zip"));
 
         Reader reader = productFeedForm.generateReader();
 

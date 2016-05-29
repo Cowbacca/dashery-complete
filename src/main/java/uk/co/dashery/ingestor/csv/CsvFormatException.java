@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed.csv;
+package uk.co.dashery.ingestor.csv;
 
 public class CsvFormatException extends RuntimeException {
     public CsvFormatException(String message) {

@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.util.Collection;
 import java.util.List;

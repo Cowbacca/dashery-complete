@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

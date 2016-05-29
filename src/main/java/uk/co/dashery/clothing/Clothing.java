@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @Document
-public class Clothing {
+class Clothing {
 
     @Id
     private String id;
@@ -21,13 +21,13 @@ public class Clothing {
     private String imageLink;
     private String searchableText;
 
-    public Clothing(String id) {
+    Clothing(String id) {
         this();
         setId(id);
     }
 
     @PersistenceConstructor
-    protected Clothing(String id, String brand, String name, int price, String link, String
+    Clothing(String id, String brand, String name, int price, String link, String
             imageLink, String searchableText) {
         this.id = id;
         this.brand = brand;

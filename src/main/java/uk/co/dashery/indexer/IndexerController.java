@@ -9,17 +9,17 @@ import uk.co.dashery.common.ProductsCreatedEvent;
 import javax.inject.Inject;
 
 @Component
-public class IndexerController {
+class IndexerController {
     private final ClothingIndexRepository clothingIndexRepository;
 
     @Inject
-    public IndexerController(ClothingIndexRepository clothingIndexRepository) {
+    IndexerController(ClothingIndexRepository clothingIndexRepository) {
         this.clothingIndexRepository = clothingIndexRepository;
     }
 
     @EventListener
     @Transactional
-    public void handleProductsCreatedEvent(ProductsCreatedEvent productsCreatedEvent) throws AlgoliaException {
+    void handleProductsCreatedEvent(ProductsCreatedEvent productsCreatedEvent) throws AlgoliaException {
         clothingIndexRepository.deleteByBrand(productsCreatedEvent.getBrand());
         clothingIndexRepository.save(productsCreatedEvent.getProducts());
     }

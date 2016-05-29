@@ -7,7 +7,7 @@ import org.mockito.InOrder;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import uk.co.dashery.common.ProductsCreatedEvent;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.util.List;
 

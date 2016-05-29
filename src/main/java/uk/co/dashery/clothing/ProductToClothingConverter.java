@@ -1,14 +1,14 @@
 package uk.co.dashery.clothing;
 
 import org.springframework.stereotype.Component;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ProductToClothingConverter {
-    public List<Clothing> convert(List<Product> products) {
+class ProductToClothingConverter {
+    List<Clothing> convert(List<Product> products) {
         return products.stream()
                 .map(this::convert)
                 .collect(Collectors.toList());

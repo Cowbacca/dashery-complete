@@ -1,6 +1,6 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
-import uk.co.dashery.ingestor.productfeed.csv.ProductCsvParser;
+import uk.co.dashery.ingestor.csv.ProductCsvParser;
 
 import java.io.IOException;
 import java.io.Reader;

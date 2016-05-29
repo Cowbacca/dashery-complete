@@ -1,8 +1,8 @@
-package uk.co.dashery.ingestor.productfeed.csv;
+package uk.co.dashery.ingestor.csv;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import org.springframework.stereotype.Component;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.util.List;
 

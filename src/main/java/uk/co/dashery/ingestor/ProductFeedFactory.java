@@ -1,9 +1,9 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import org.springframework.stereotype.Component;
-import uk.co.dashery.ingestor.productfeed.csv.AffiliateWindowProductCsvParser;
-import uk.co.dashery.ingestor.productfeed.csv.DasheryProductCsvParser;
-import uk.co.dashery.ingestor.productfeed.csv.ProductCsvParser;
+import uk.co.dashery.ingestor.csv.AffiliateWindowProductCsvParser;
+import uk.co.dashery.ingestor.csv.DasheryProductCsvParser;
+import uk.co.dashery.ingestor.csv.ProductCsvParser;
 
 import javax.inject.Inject;
 import java.io.IOException;

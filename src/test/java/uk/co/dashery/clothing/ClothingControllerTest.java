@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationEventPublisher;
 import uk.co.dashery.common.ProductsCreatedEvent;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.util.ArrayList;
 import java.util.List;

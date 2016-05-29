@@ -1,9 +1,9 @@
-package uk.co.dashery.ingestor.productfeed.csv;
+package uk.co.dashery.ingestor.csv;
 
 import com.univocity.parsers.common.processor.RowProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
-import uk.co.dashery.ingestor.productfeed.Product;
+import uk.co.dashery.ingestor.Product;
 
 import java.io.IOException;
 import java.io.Reader;

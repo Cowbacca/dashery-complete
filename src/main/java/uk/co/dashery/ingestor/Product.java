@@ -1,4 +1,4 @@
-package uk.co.dashery.ingestor.productfeed;
+package uk.co.dashery.ingestor;
 
 import com.univocity.parsers.annotations.Parsed;
 import lombok.AllArgsConstructor;
