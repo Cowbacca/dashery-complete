@@ -63,7 +63,8 @@ public class ClothingItem {
     }
 
     private String compositeId() {
-        return id + "-" + brand;
+        String compositeId = id + "-" + brand;
+        return compositeId.replace(" ", "");
     }
 
     public void transformImage(ImageTransformer imageTransformer) {

@@ -22,7 +22,7 @@ public class ClothingItemTest {
 
     @Test
     public void testChangesImageLinkToTransformedImageLinkOnTransformImage() {
-        ClothingItem clothingItem = givenAClothingItem();
+        ClothingItem clothingItem = givenAClothingItem("id", "brand", "imageLink");
         when(imageTransformer.transformedUrl("id-brand", "imageLink")).thenReturn("transformedUrl");
 
         clothingItem.transformImage(imageTransformer);
@@ -30,11 +30,21 @@ public class ClothingItemTest {
         assertThat(clothingItem.getImageLink(), is("transformedUrl"));
     }
 
-    private ClothingItem givenAClothingItem() {
+    @Test
+    public void testRemovesSpacesFromCompositeIDBeforeSubmittingToImageTransformer() {
+        ClothingItem clothingItem = givenAClothingItem("an id", "a brand", "imageLink");
+        when(imageTransformer.transformedUrl("anid-abrand", "imageLink")).thenReturn("transformedUrl");
+
+        clothingItem.transformImage(imageTransformer);
+
+        assertThat(clothingItem.getImageLink(), is("transformedUrl"));
+    }
+
+    private ClothingItem givenAClothingItem(String id, String brand, String imageLink) {
         ClothingItem clothingItem = new ClothingItem();
-        clothingItem.setId("id");
-        clothingItem.setBrand("brand");
-        clothingItem.setImageLink("imageLink");
+        clothingItem.setId(id);
+        clothingItem.setBrand(brand);
+        clothingItem.setImageLink(imageLink);
         return clothingItem;
     }
 }

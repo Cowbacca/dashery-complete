@@ -46,7 +46,7 @@ public class ClothingIndexRepositoryTest {
     public void testSavesObjectIDToIndex() throws Exception {
         clothingIndexRepository.save(clothingItems);
 
-        assertThatPropertyIs("objectID", "1-Test Merchant");
+        assertThatPropertyIs("objectID", "1-TestMerchant");
     }
 
     @Test
