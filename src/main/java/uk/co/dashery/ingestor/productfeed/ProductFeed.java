@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-public class ProductFeed {
+class ProductFeed {
     private final Reader reader;
     private final ProductCsvParser productCsvParser;
 
-    public ProductFeed(Reader reader, ProductCsvParser productCsvParser) {
+    ProductFeed(Reader reader, ProductCsvParser productCsvParser) {
         this.reader = reader;
         this.productCsvParser = productCsvParser;
     }

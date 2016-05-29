@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-public class ProductFeedController {
+class ProductFeedController {
 
     @Inject
     private ProductFeedFactory productFeedFactory;
@@ -23,14 +23,14 @@ public class ProductFeedController {
     private ApplicationEventPublisher applicationEventPublisher;
 
     @RequestMapping(value = "/productFeed", method = RequestMethod.GET)
-    public String productsForm(Model model) {
+    String productsForm(Model model) {
         model.addAttribute("productFeed", new ProductFeedForm());
         return "productFeed";
     }
 
     @RequestMapping(value = "/productFeed", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void ingestProducts(@ModelAttribute ProductFeedForm productFeedForm) throws IOException {
+    void ingestProducts(@ModelAttribute ProductFeedForm productFeedForm) throws IOException {
         ProductFeed productFeed = productFeedFactory.create(productFeedForm);
         List<Product> products = productFeed.getProducts();
         applicationEventPublisher.publishEvent(new ProductsCreatedEvent(products, merchant(products)));

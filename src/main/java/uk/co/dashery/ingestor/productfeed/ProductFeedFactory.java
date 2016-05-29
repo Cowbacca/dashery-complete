@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 
 @Component
-public class ProductFeedFactory {
+class ProductFeedFactory {
 
     @Inject
     private DasheryProductCsvParser dasheryClothingCsvParser;

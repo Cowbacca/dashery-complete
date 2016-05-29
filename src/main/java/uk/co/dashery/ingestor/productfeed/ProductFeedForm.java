@@ -11,7 +11,7 @@ import java.util.zip.ZipInputStream;
 
 @Data
 @NoArgsConstructor
-public class ProductFeedForm {
+class ProductFeedForm {
 
     private boolean usingUrl;
     private String url;
@@ -20,22 +20,22 @@ public class ProductFeedForm {
 
     private boolean isAffiliateWindowFormat;
 
-    public ProductFeedForm(String url) {
+    ProductFeedForm(String url) {
         this.usingUrl = true;
         this.url = url;
     }
 
-    public ProductFeedForm(MultipartFile file) {
+    ProductFeedForm(MultipartFile file) {
         this.usingUrl = false;
         this.file = file;
     }
 
-    public ProductFeedForm(MultipartFile file, boolean isAffiliateWindowFormat) {
+    ProductFeedForm(MultipartFile file, boolean isAffiliateWindowFormat) {
         this.file = file;
         this.isAffiliateWindowFormat = isAffiliateWindowFormat;
     }
 
-    public Reader generateReader() throws IOException {
+    Reader generateReader() throws IOException {
         InputStream csvInputStream;
         if (usingUrl) {
             csvInputStream = getInputStreamRegardlessOfWhetherInZip(new URL(url).openStream());
