@@ -43,20 +43,21 @@ public class ImageTransformerTest {
 
     @Test
     public void testReturnsUrlToTransformedImage() throws IOException {
-        givenAResultsMapWithAUrlKeyOf(TRANSFORMED_URL);
+        givenAResultsMapWithAUrlValueOf(TRANSFORMED_URL);
 
-        String transformedUrl = imageTransformer.transformedUrl(ID, IMAGE_URL);
+        String transformedUrl = imageTransformer.transformedUrl(ID, IMAGE_URL).get();
 
         assertThat(transformedUrl, is(TRANSFORMED_URL));
     }
 
-    private void givenAResultsMapWithAUrlKeyOf(String transformedUrl) throws IOException {
+    private void givenAResultsMapWithAUrlValueOf(String transformedUrl) throws IOException {
         ImmutableMap<Object, Object> resultsMap = ImmutableMap.builder().put("url", transformedUrl).build();
-        when(uploader.upload(eq(IMAGE_URL), any(Map.class))).thenReturn(resultsMap);
+        when(uploader.upload(eq(IMAGE_URL), any())).thenReturn(resultsMap);
     }
 
     @Test
     public void testUsesIdAsPublicId() throws IOException {
+        givenAResultsMapWithAUrlValueOf(TRANSFORMED_URL);
         imageTransformer.transformedUrl(ID, TRANSFORMED_URL);
 
         Object publicId = captureMetadataMapValueWithKeyOf("public_id");
@@ -72,6 +73,8 @@ public class ImageTransformerTest {
 
     @Test
     public void testTransformsImagesTo1000Width() throws IOException {
+        givenAResultsMapWithAUrlValueOf(TRANSFORMED_URL);
+
         imageTransformer.transformedUrl(ID, TRANSFORMED_URL);
 
         assertThatTransformationContains("w_1000");
@@ -79,6 +82,8 @@ public class ImageTransformerTest {
 
     @Test
     public void testTransformsImagesTo1000Height() throws IOException {
+        givenAResultsMapWithAUrlValueOf(TRANSFORMED_URL);
+
         imageTransformer.transformedUrl(ID, TRANSFORMED_URL);
 
         assertThatTransformationContains("h_1000");
@@ -86,6 +91,8 @@ public class ImageTransformerTest {
 
     @Test
     public void testCropsImagesToLimit() throws IOException {
+        givenAResultsMapWithAUrlValueOf(TRANSFORMED_URL);
+
         imageTransformer.transformedUrl(ID, TRANSFORMED_URL);
 
         assertThatTransformationContains("c_limit");

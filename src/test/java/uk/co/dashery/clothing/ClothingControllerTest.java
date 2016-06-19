@@ -1,6 +1,7 @@
 package uk.co.dashery.clothing;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,7 +12,9 @@ import uk.co.dashery.common.ClothingItem;
 import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
@@ -22,6 +25,7 @@ public class ClothingControllerTest {
     public static final String MERCHANT = "Merctest";
     public static final String IMAGE_LINK = "imageLink";
     public static final String TRANSFORMED_URL = "transformedUrl";
+    public static final String ID = "id123";
 
     @Mock
     private ClothingRepository mockClothingRepository;
@@ -40,11 +44,14 @@ public class ClothingControllerTest {
 
     @Test
     public void testProcessesNewClothing() {
-        clothingController.handleProductFeedIngested(getProductsCreatedEvent("id123"));
+        when(imageTransformer.transformedUrl(anyString(), eq(IMAGE_LINK))).thenReturn(Optional.of(TRANSFORMED_URL));
 
-        ClothingItem clothingItem = new ClothingItem("id123");
+        clothingController.handleProductFeedIngested(getProductsCreatedEvent(ID));
+
+        ClothingItem clothingItem = new ClothingItem(ID);
         clothingItem.setBrand(MERCHANT);
-        List<ClothingItem> expectedNewClothing = Lists.newArrayList(clothingItem);
+        clothingItem.setImageLink(TRANSFORMED_URL);
+        Set<ClothingItem> expectedNewClothing = Sets.newHashSet(clothingItem);
 
         verify(mockClothingRepository).deleteByBrand(MERCHANT);
         verify(mockClothingRepository).save(expectedNewClothing);
@@ -63,19 +70,29 @@ public class ClothingControllerTest {
         clothingItem.setImageLink(IMAGE_LINK);
         ProductFeedIngestedEvent productFeedIngestedEvent = new ProductFeedIngestedEvent(MERCHANT, Lists.newArrayList(clothingItem));
 
-        when(imageTransformer.transformedUrl(anyString(), eq(IMAGE_LINK))).thenReturn(TRANSFORMED_URL);
+        when(imageTransformer.transformedUrl(anyString(), eq(IMAGE_LINK))).thenReturn(Optional.of(TRANSFORMED_URL));
 
         clothingController.handleProductFeedIngested(productFeedIngestedEvent);
 
         ClothingItem transformedClothingItem = new ClothingItem();
         transformedClothingItem.setImageLink(TRANSFORMED_URL);
-        verify(mockClothingRepository).save(Lists.newArrayList(transformedClothingItem));
+        verify(mockClothingRepository).save(Sets.newHashSet(transformedClothingItem));
+    }
+
+    @Test
+    public void testDoesNotSaveClothingWhichHasFailedImageConversion() {
+        when(imageTransformer.transformedUrl(ID + "-" + MERCHANT, IMAGE_LINK)).thenReturn(Optional.empty());
+
+        clothingController.handleProductFeedIngested(getProductsCreatedEvent(ID));
+
+        verify(mockClothingRepository).save(Collections.emptySet());
     }
 
     private ProductFeedIngestedEvent getProductsCreatedEvent(String id) {
         ClothingItem clothingItem = new ClothingItem();
         clothingItem.setId(id);
         clothingItem.setBrand(MERCHANT);
+        clothingItem.setImageLink(IMAGE_LINK);
         return new ProductFeedIngestedEvent(MERCHANT, Lists.newArrayList(clothingItem));
     }
 }

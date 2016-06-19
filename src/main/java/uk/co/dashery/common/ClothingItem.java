@@ -10,6 +10,8 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import uk.co.dashery.clothing.image.ImageTransformer;
 
+import java.util.Optional;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -67,7 +69,14 @@ public class ClothingItem {
         return compositeId.replace(" ", "").replace("&", "and");
     }
 
-    public void transformImage(ImageTransformer imageTransformer) {
-        imageLink = imageTransformer.transformedUrl(compositeId(), imageLink);
+    public Optional<ClothingItem> transformImage(ImageTransformer imageTransformer) {
+        Optional<String> transformedUrl = imageTransformer.transformedUrl(compositeId(), imageLink);
+        if (transformedUrl.isPresent()) {
+            imageLink = transformedUrl.get();
+            return Optional.of(this);
+        } else {
+            return Optional.empty();
+        }
+
     }
 }

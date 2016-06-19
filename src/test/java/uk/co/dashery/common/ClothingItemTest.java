@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import uk.co.dashery.clothing.image.ImageTransformer;
 
+import java.util.Optional;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -23,7 +25,7 @@ public class ClothingItemTest {
     @Test
     public void testChangesImageLinkToTransformedImageLinkOnTransformImage() {
         ClothingItem clothingItem = givenAClothingItem("id", "brand", "imageLink");
-        when(imageTransformer.transformedUrl("id-brand", "imageLink")).thenReturn("transformedUrl");
+        when(imageTransformer.transformedUrl("id-brand", "imageLink")).thenReturn(Optional.of("transformedUrl"));
 
         clothingItem.transformImage(imageTransformer);
 
@@ -33,7 +35,7 @@ public class ClothingItemTest {
     @Test
     public void testRemovesSpacesFromCompositeIDBeforeSubmittingToImageTransformer() {
         ClothingItem clothingItem = givenAClothingItem("an id", "a brand", "imageLink");
-        when(imageTransformer.transformedUrl("anid-abrand", "imageLink")).thenReturn("transformedUrl");
+        when(imageTransformer.transformedUrl("anid-abrand", "imageLink")).thenReturn(Optional.of("transformedUrl"));
 
         clothingItem.transformImage(imageTransformer);
 
@@ -43,7 +45,7 @@ public class ClothingItemTest {
     @Test
     public void testReplacesAmpersandWithAndInCompositeIDBeforeSubmittingToImageTransformer() {
         ClothingItem clothingItem = givenAClothingItem("an id", "a & brand", "imageLink");
-        when(imageTransformer.transformedUrl("anid-aandbrand", "imageLink")).thenReturn("transformedUrl");
+        when(imageTransformer.transformedUrl("anid-aandbrand", "imageLink")).thenReturn(Optional.of("transformedUrl"));
 
         clothingItem.transformImage(imageTransformer);
 

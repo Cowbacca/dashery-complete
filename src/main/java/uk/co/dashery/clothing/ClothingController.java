@@ -13,6 +13,10 @@ import uk.co.dashery.common.ProductFeedIngestedEvent;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 @Controller
 @Log
@@ -37,24 +41,21 @@ class ClothingController {
         List<ClothingItem> clothingItems = productFeedIngestedEvent.getClothingItems();
 
         if (!clothingItems.isEmpty()) {
-            transformClothingItemsImages(clothingItems);
-            deleteExistingAndSaveNew(brand, clothingItems);
+            Set<ClothingItem> transformedClothingItems = transformClothingItemsImages(clothingItems);
+            deleteExistingAndSaveNew(brand, transformedClothingItems);
             applicationEventPublisher.publishEvent(new ClothingItemsPersistedEvent(brand, clothingItems));
         }
     }
 
-    private void transformClothingItemsImages(List<ClothingItem> clothingItems) {
-        clothingItems.stream()
-                .forEach(clothingItem -> {
-                    try {
-                        clothingItem.transformImage(imageTransformer);
-                    } catch (Exception e) {
-                        log.warning(e.getMessage());
-                    }
-                });
+    private Set<ClothingItem> transformClothingItemsImages(List<ClothingItem> clothingItems) {
+        return clothingItems.stream()
+                .map(clothingItem -> clothingItem.transformImage(imageTransformer))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(toSet());
     }
 
-    private void deleteExistingAndSaveNew(String brand, List<ClothingItem> clothingList) {
+    private void deleteExistingAndSaveNew(String brand, Set<ClothingItem> clothingList) {
         log.info("Deleting by brand: " + brand);
         clothingRepository.deleteByBrand(brand);
         log.info("Saving clothing list.");

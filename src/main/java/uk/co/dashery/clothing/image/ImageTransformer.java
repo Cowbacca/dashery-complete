@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 @Log
@@ -21,18 +22,19 @@ public class ImageTransformer {
         this.cloudinary = cloudinary;
     }
 
-    public String transformedUrl(String id, String url) {
-        Map<String, String> uploadResult = upload(id, url);
-        return uploadResult.get("url");
+    public Optional<String> transformedUrl(String id, String url) {
+        try {
+            Map<String, String> uploadResult = upload(id, url);
+            return Optional.ofNullable(uploadResult.get("url"));
+        } catch (IOException e) {
+            log.warning("Failed to upload image with url of " + url + " for transformation.");
+            return Optional.empty();
+        }
     }
 
-    private Map<String, String> upload(String id, String url) {
-        try {
+    private Map<String, String> upload(String id, String url) throws IOException {
             log.info("Uploading " + url + " for transformation.");
             return cloudinary.uploader().upload(url, metadata(id));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private Map metadata(String id) {
