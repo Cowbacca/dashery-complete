@@ -2,10 +2,10 @@ package uk.co.dashery.common;
 
 import lombok.Value;
 
-import java.util.List;
+import java.util.Set;
 
 @Value
 public class ClothingItemsPersistedEvent {
     private final String brand;
-    private final List<ClothingItem> clothingItems;
+    private final Set<ClothingItem> clothingItems;
 }

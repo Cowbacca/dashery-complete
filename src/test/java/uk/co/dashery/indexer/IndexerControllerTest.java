@@ -1,6 +1,6 @@
 package uk.co.dashery.indexer;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import uk.co.dashery.common.ClothingItem;
 import uk.co.dashery.common.ClothingItemsPersistedEvent;
 
-import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -32,7 +32,7 @@ public class IndexerControllerTest {
 
     @Test
     public void testHandleProductsCreatedEvent() throws Exception {
-        List<ClothingItem> clothingItems = Lists.newArrayList(clothingItem);
+        Set<ClothingItem> clothingItems = Sets.newHashSet(clothingItem);
 
         indexerController.handleProductsCreatedEvent(new ClothingItemsPersistedEvent(MERCHANT, clothingItems));
 

@@ -43,7 +43,7 @@ class ClothingController {
         if (!clothingItems.isEmpty()) {
             Set<ClothingItem> transformedClothingItems = transformClothingItemsImages(clothingItems);
             deleteExistingAndSaveNew(brand, transformedClothingItems);
-            applicationEventPublisher.publishEvent(new ClothingItemsPersistedEvent(brand, clothingItems));
+            applicationEventPublisher.publishEvent(new ClothingItemsPersistedEvent(brand, transformedClothingItems));
         }
     }
 
