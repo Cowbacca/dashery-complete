@@ -26,8 +26,8 @@ public class ImageTransformer {
         try {
             Map<String, String> uploadResult = upload(id, url);
             return Optional.ofNullable(uploadResult.get("url"));
-        } catch (IOException e) {
-            log.warning("Failed to upload image with url of " + url + " for transformation.");
+        } catch (Exception e) {
+            log.warning("Failed to upload image with url of " + url + " for transformation: " + e.getMessage());
             return Optional.empty();
         }
     }
