@@ -12,9 +12,11 @@ import org.mockito.Mock;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -108,6 +110,15 @@ public class ImageTransformerTest {
     private void assertThatTransformationContains(String value) throws IOException {
         Transformation transformation = (Transformation) captureMetadataMapValueWithKeyOf("transformation");
         assertThat(transformation.generate(), containsString(value));
+    }
+
+    @Test
+    public void testReturnsEmptyOptionalOnException() throws IOException {
+        when(uploader.upload(eq(IMAGE_URL), any())).thenThrow(new RuntimeException());
+
+        Optional<String> transformedUrl = imageTransformer.transformedUrl(ID, TRANSFORMED_URL);
+
+        assertFalse(transformedUrl.isPresent());
     }
 
 
