@@ -44,7 +44,3 @@ search.start();
 function getTemplate(templateName) {
   return document.querySelector('#' + templateName + '-template').innerHTML;
 }
-
-function imageError(image) {
-    $(image).parent().parent().parent().appendTo($(".ais-hits")).hide();
-}
