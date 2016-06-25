@@ -121,6 +121,10 @@ h1 {
     clear: both;
 }
 
+.ais-pagination--item__active {
+    background: red;
+}
+
 a:hover {
     text-decoration: none;
 }
