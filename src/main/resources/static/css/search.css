@@ -122,7 +122,7 @@ h1 {
 }
 
 .ais-pagination--item__active {
-    background: red;
+    font-weight: bold;
 }
 
 a:hover {
