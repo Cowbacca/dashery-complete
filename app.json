@@ -3,21 +3,13 @@
   "scripts": {
   },
   "env": {
-    "SPRING_CLOUD_CONFIG_PASSWORD": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_PROFILE": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_URI": {
-      "required": true
-    },
-    "SPRING_CLOUD_CONFIG_USER": {
+    "APP_PORT": {
       "required": true
     }
   },
   "addons": [
-    "mongolab"
+    "mongolab",
+    "cloudinary"
   ],
   "buildpacks": [
     {

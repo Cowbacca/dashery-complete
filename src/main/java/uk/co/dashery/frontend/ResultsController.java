@@ -1,22 +1,25 @@
 package uk.co.dashery.frontend;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import uk.co.dashery.clothingquery.clothing.Clothing;
-import uk.co.dashery.clothingquery.clothing.ClothingController;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Controller
-public class ResultsController {
+class ResultsController {
+
+    private final String appId;
+    private final String apiKey;
+    private final String indexName;
 
     @Inject
-    private ClothingController clothingController;
-    @Inject
-    private FrontEndClothingConverter frontEndClothingConverter;
+    ResultsController(@Value("${algoliasearch.application.id}") String appId, @Value("${algoliasearch.api.key.search}") String apiKey, @Value("${indexer.index.name}") String indexName) {
+        this.appId = appId;
+        this.apiKey = apiKey;
+        this.indexName = indexName;
+    }
 
     @RequestMapping("/")
     String home() {
@@ -24,9 +27,10 @@ public class ResultsController {
     }
 
     @RequestMapping("/results")
-    String results(@RequestParam(defaultValue = "") String search, Model model) {
-        List<Clothing> clothing = clothingController.clothing(search.toLowerCase());
-        model.addAttribute("clothing", frontEndClothingConverter.convert(clothing));
+    String results(Model model) {
+        model.addAttribute("appId", appId);
+        model.addAttribute("apiKey", apiKey);
+        model.addAttribute("indexName", indexName);
         return "results";
     }
 }
